@@ -1,8 +1,8 @@
 'use stric'
 // // 1
-// function isAnagram(wordFirst, wordSecond) {
-//     let firstWord = wordFirst.toLowerCase().split('').sort().join("");
-//     let secondWord = wordSecond.toLowerCase().split('').sort().join("");
+// function isAnagram(first, second) {
+//     let firstWord = first.toLowerCase().split('').sort().join("");
+//     let secondWord = second.toLowerCase().split('').sort().join("");
 //     if(firstWord == secondWord){
 //         return true;
 //     }
@@ -15,7 +15,7 @@
 //     let counter = 0; 
 //     for(let i=0; i=num; i++){
 //         num = Math.floor(num/10);
-//         counter++
+//         counter++;
 //     }
 //     return counter;
 // } 
@@ -43,16 +43,68 @@
 //     return false;
 // }
 
-// 5
-function calcWord(str){
-    let arr = str.split(' ').sort();
-    console.log(arr);
-    let newArr = arr.filter((item, index) => arr.indexOf(item) === index)
-    console.log(newArr);
-    
-}
+// // 5
+// function calcWords(str){
+//     let words = str.toLowerCase().split(' ');
+//     let newWords = words.filter((item, index) => words.indexOf(item) === index);
+//     return newWords.length;    
+// }
 
-console.log(calcWord('Widget id with id with if else'));
+// // 6
+// function entryWords(str){
+//     let words = {};
+//     let newStr = str.toLowerCase().split(' ');
+//     for(let i = 0; i < newStr.length; i++){
+//         if(words[newStr[i]] === undefined){
+//         words[newStr[i]] = 1;
+//         } else {
+//             words[newStr[i]] += 1;
+//         }
+//     }
+//     return words
+// }
+
+// 7 
+
+// class Rectangle {
+//     constructor(length, width){
+//         this.length = length
+//         this.width = width
+//     }
+//     perimeter(){
+//         return (this.length + this.width)*2
+//     };
+//     square(){
+//         return (this.length * this.width)
+//     };
+// }
+
+// class Riangle{
+//     constructor(a, b, c){
+//         this.a = a;
+//         this.b = b;
+//         this.c = c;
+//     }
+//     perimeter(){
+//         return (this.a + this.b + this.c)
+//     };
+//     square(){
+//         return (this.a * this.b)/2
+//     };
+// }
+
+// class Circle{
+//     constructor(radius){
+//         this.radius = radius;
+//     }
+    
+//     perimeter(){
+//         return Number((2 * Math.PI * this.radius).toFixed(2))
+//     };
+//     square(){
+//         return Number((Math.PI * (this.radius**2)).toFixed(2))
+//     };
+// }
 
 // // 8
 // const factorial = (function () {

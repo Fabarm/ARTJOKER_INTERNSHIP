@@ -32,11 +32,7 @@
 
 // // 4
 // function isPalindrome(str){
-//     let newStr = str.toLowerCase().split('').reverse().join('');
-//     if( str == newStr){
-//         return true;
-//     }
-//     return false;
+//     return  str == str.toLowerCase().split('').reverse().join('');   
 // }
 
 // // 5
@@ -59,6 +55,7 @@
 //     }
 //     return words
 // }
+// console.log(entryWords('hello world my name is my world'));
 
 // 7
 // function Rectangle(length, width){
@@ -124,6 +121,11 @@
 //     }
 //     return res;
 // }
+
+// const factorial = function(num){
+//     return num ? num * factorial(num-1) : 1;    
+// }
+
 // const factorialMemo = (function () {
 //     let memo = {};
 //     return function fact(num){
@@ -139,83 +141,73 @@
 //     };
 // })();
 
-// 9
-
-
-// // 10
-// function calc(array, info){
-//     if(info === '0'){
-//         let res = array.filter(item => item === 0);
-//         return res.length;
+// // 9
+// function getSumElement(array, callback){
+//     let count = 0;
+//     for(let i = 0; i < array.length; i++){        
+//         if(callback(array[i])){
+//             count += array[i];
+//         }
 //     }
+//     return count;
+// };
+// console.log(getSumElement([1,1,2,3,4,5,6,7,8,9,10], item => item%2 === 0));
 
-//     if(info === "<0"){
-//         let res = array.filter(item => item < 0);
-//         return res.length;
+// function getSumElement(array, callback, i){
+//     i = i || 0;
+//     let sum = null;    
+//     sum += callback(array[i]) ? array[i] :  0;
+//     if(array.length <= i) {
+//         return sum ;
 //     }
+//     return sum + getSumElement(array, callback, ++i)
+// };
+// console.log(getSumElement([1,1,2,3,4,5,6,7,8,9,10], item => item%3 === 0));
 
-//     if(info === '>0'){
-//         let res = array.filter(item => item > 0);
-//         return res.length;
-//     }
-
-//     if(info === 'simple'){
-//         let res = array.filter(item => {
-//             let flag = true;
-//             if(item === 1){
-//                 flag = false;
+// function getSumElemen(array, callback){
+//     let count = 0;
+//     for(let i = 0; i < array.length; i++){
+//         for(let j = 0; j < array[i].length; j++){        
+//             if(callback(array[i][j])){
+//                 count += array[i][j];
 //             }
-//             for (let i = 2; i < item; i++) {
-//                 if (item % i == 0) {
-//                     flag = false;
-//                 }        
-//             }
-//             if(flag === true){
-//                 return item;
-//             }
-//         })
-//         return res.length;
+//         }
 //     }
+//     return count;
 // }
 
-// // two-dimensional array
-// function calc(array, info){
-//     let amount = 0;
-//     for(let i = 0; i < array.length; i++){
-//         if(info === '0'){
-//             let res = array[i].filter(item => item === 0);
-//             amount += res.length;
-//         }
-    
-//         if(info === "<0"){
-//             let res = array[i].filter(item => item < 0);
-//             amount += res.length;
-//         }
-    
-//         if(info === '>0'){
-//             let res = array[i].filter(item => item > 0);
-//             amount += res.length;
-//         }
-    
-//         if(info === 'simple'){
-//             let res = array[i].filter(item => {
-//                 let flag = true;
-//                 if(item === 1){
-//                     flag = false;
-//                 }
-//                 for (let i = 2; i < item; i++) {
-//                     if (item % i == 0) {
-//                         flag = false;
-//                     }        
-//                 }
-//                 if(flag === true){
-//                     return item;
-//                 }
-//             })
-//             amount += res.length;
+// // 10
+// function getAmountElement(array, callback){
+//     let count = 0;
+//     for(let i = 0; i < array.length; i++){        
+//         if(callback(array[i])){
+//             count += 1;
 //         }
 //     }
-//     return amount;
+//     return count;
+// }
+
+// function getAmountElement(array, callback){
+//     let count = 0;
+//     for(let i = 0; i < array.length; i++){
+//         for(let j = 0; j < array[i].length; j++){        
+//             if(callback(array[i][j])){
+//                 count += 1;
+//             }
+//         }
+//     }
+//     return count;
+// }
+
+// 13
+// function getSum(min, max, callback){
+//     let count = 0;
+//     for(let i = min; i <= max; i++){        
+//         if(callback(i)){
+//             count += i;
+//         }
+//     }
+//     return count;
 // }
 
 // 15
@@ -250,7 +242,8 @@
 // ]));
 
 // // 16
-// function removeString(array){
+
+// function removeRow(array){
 //     let res = array.filter(item => {
 //         let flag = true;
 //         for(let i = 0; i < item.length; i++){
@@ -265,9 +258,35 @@
 //     })
 //     return res;
 // }
-// console.log(removeString([
-//     [1,2,3,4,5,6,7,8,9],
-//     [1,2,3,4,0,6,7,8,9],
-//     [9,8,7,6,5,4,3,2,1],
+// console.log(removeRow([
+//     [3,4,5,6],
+//     [1,2,0,6],
+//     [9,8,7,5],
+//     [5,0,1,7],
 // ]));
-functionas9
+
+// function removeColumn(array){
+//     function transform(arr){
+//         return arr[0].map((_, i) => arr.map(row => row[i]));
+//     }
+    
+//     return transform(newMatrix = transform(array).filter(item => {
+//         let flag = true;
+//         for(let i = 0; i < item.length; i++){
+//             if(item[i] === 0){
+//                 flag = false;
+//                 break;
+//             }
+//         }
+//         if(flag === true){
+//             return item;
+//         }
+//     }));
+// }
+// console.log(removeColumn([
+//     [1,2,3,4,5],
+//     [1,2,3,4,0],
+//     [9,8,7,6,5],
+//     [9,8,0,6,5],
+//     [0,8,7,6,5],
+// ]));

@@ -57,7 +57,7 @@
 // }
 // console.log(entryWords('hello world my name is my world'));
 
-// 7
+// // 7
 // function Rectangle(length, width){
 //     this.square = length * width;
 //     this.perimeter = (length + width)*2;
@@ -199,7 +199,19 @@
 //     return count;
 // }
 
-// 13
+// // 11
+function getBinary(num){
+    let arr = [];
+    if(num>0){
+        let res = num % 2
+        
+    }
+    
+}
+console.log(getBinary(15));
+
+
+// // 13
 // function getSum(min, max, callback){
 //     let count = 0;
 //     for(let i = min; i <= max; i++){        
@@ -210,7 +222,7 @@
 //     return count;
 // }
 
-// 15
+// // 15
 // function transformMatrix(array){
 //     let newMatrix = array[0].map((_, i) => array.map(row => row[i]));
     

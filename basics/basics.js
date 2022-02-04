@@ -1,13 +1,10 @@
 'use stric'
 // // 1
-// function isAnagram(first, second) {
-//     let firstWord = first.toLowerCase().split('').sort().join("");
-//     let secondWord = second.toLowerCase().split('').sort().join("");
-//     if(firstWord == secondWord){
-//         return true;
-//     }
-//     return false;
+// function isAnagram(firstWord, secondWord) {    
+//     return first.toLowerCase().split('').sort().join("") ===
+//             second.toLowerCase().split('').sort().join("");
 // }
+// console.log(isAnagram('kamuw', 'muwka'));
 
 // // 3
 // const calc = function(num){
@@ -32,8 +29,9 @@
 
 // // 4
 // function isPalindrome(str){
-//     return  str == str.toLowerCase().split('').reverse().join('');   
+//     return  str === str.toLowerCase().split('').reverse().join('');   
 // }
+// console.log(isPalindrome('kabak'));
 
 // // 5
 // function calcWords(str){
@@ -346,3 +344,29 @@
 //     [9,8,0,6,5],
 //     [0,8,7,6,5],
 // ]));
+
+// // 17
+// function calc(array, callback){
+//     let res = 0,
+//         counter = 0;
+    
+//     for(let i = 0; i < array.length; i++){
+//         for(let j = 0; j < array[i].length; j++){        
+//             if(callback(array[i][j])){
+//                 res += array[i][j];
+//                 counter++;
+//             }
+//         }
+//     }
+//     return res/counter;
+// }
+// console.log(calc([
+//     [1,2,3,4,5],
+//     [1,2,3,4,0],
+//     [9,8,7,6,5],
+//     [9,8,0,6,5],
+//     [0,8,7,6,5],
+// ], ));
+
+
+// 1+ 2+ 3+ 4+ 5+ 6+ 7+ 8+ 9+ 10+ 11+ 12+ 13++- 14+ 15+ 16+ 17- 18- 19- 20- 

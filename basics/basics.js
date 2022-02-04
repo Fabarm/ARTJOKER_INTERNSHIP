@@ -200,16 +200,30 @@
 // }
 
 // // 11
-function getBinary(num){
-    let arr = [];
-    if(num>0){
-        let res = num % 2
-        
-    }
-    
-}
-console.log(getBinary(15));
+// function getBinary(num){
+//     let arr = [];
+//     while(num>0){
+//         arr.unshift(num%2);
+//         num = Math.floor(num/2);
+//     }
+//     return Number(arr.join(''));
+// }
+// console.log(getBinary(13));
 
+// function getBinary(num){
+//     let arr = [],
+//         res = 0;
+//     for(let i = 0; i=num; i++){
+//         arr.unshift(num%10);
+//         num = Math.floor(num/10);
+//     }
+
+//     for(let j = 0; j < arr.length; j++){
+//         res += arr[j]*2**j;        
+//     }
+//     return res; 
+// }
+// console.log(getBinary(101011));
 
 // // 13
 // function getSum(min, max, callback){
@@ -221,6 +235,37 @@ console.log(getBinary(15));
 //     }
 //     return count;
 // }
+
+// // 14
+// function averageElements(array, callback){
+//     let res = 0,
+//         counter = 0;
+
+//     for(let i = 0; i < array.length; i++){
+//         if(callback(array[i])){
+//             res += array[i];
+//             counter++;
+//         }
+//     }
+//     return res/counter;
+// }
+// console.log(averageElements([10,20,30,40,50,6,7,8,9,10,11,12], item => item));
+
+// function averageElements(array, callback){
+//     let res = 0,
+//         counter = 0;
+    
+//     for(let i = 0; i < array.length; i++){
+//         for(let j = 0; j < array[i].length; j++){        
+//             if(callback(array[i][j])){
+//                 res += array[i][j];
+//                 counter++;
+//             }
+//         }
+//     }
+//     return res/counter;
+// }
+// console.log(averageElements([[10,20,30,40,50],[6,7,80,9,10,11,12]], item => item%3===0));
 
 // // 15
 // function transformMatrix(array){
@@ -254,7 +299,6 @@ console.log(getBinary(15));
 // ]));
 
 // // 16
-
 // function removeRow(array){
 //     let res = array.filter(item => {
 //         let flag = true;

@@ -277,11 +277,13 @@
 //     [7,8,9]
 // ]));
 
-// function SumMatrix(A,B){   
+// function SumMatrix(firstMatr,secondMatr){   
 //     let res = [];
-//     for (var i = 0; i < A.length; i++){ 
-//         res[ i ] = [];
-//        for (var j = 0; j < A[0].length; j++) res[ i ][j] = A[ i ][j]+B[ i ][j];
+//     for (let i = 0; i < firstMatr.length; i++){ 
+//         res[i] = [];
+//         for (let j = 0; j < firstMatr[0].length; j++){
+//            res[i][j] = firstMatr[i][j]+secondMatr[i][j];
+//         }
 //     }
 //     return res;
 // }
@@ -346,27 +348,104 @@
 // ]));
 
 // // 17
-// function calc(array, callback){
-//     let res = 0,
-//         counter = 0;
+// function getTopDiagonal(matrix, condition){
+//     let zero = 0,
+//         sum = 0,
+//         count  = 0;
     
-//     for(let i = 0; i < array.length; i++){
-//         for(let j = 0; j < array[i].length; j++){        
-//             if(callback(array[i][j])){
-//                 res += array[i][j];
-//                 counter++;
+//     for(let i = 0; i < matrix.length; i++){
+//         for(let j = i + 1; j < matrix[i].length; j++){        
+//             if(matrix[i][j] === 0){
+//                 zero++;
 //             }
+//             sum += matrix[i][j];
+//             count++;
 //         }
 //     }
-//     return res/counter;
+    
+//     if(condition === "zero"){
+//         return zero;
+//     } else if (condition === "sum"){
+//         return sum;
+//     } else if (condition === "mean"){
+//         return sum/count;
+//     } else{
+//         return "Задайте вторым аргументом одно изи значений(zero, sum or mean)";
+//     }
 // }
-// console.log(calc([
+// console.log(getTopDiagonal([
 //     [1,2,3,4,5],
 //     [1,2,3,4,0],
 //     [9,8,7,6,5],
 //     [9,8,0,6,5],
 //     [0,8,7,6,5],
-// ], ));
+// ], 'mean'));
+
+// function getBottomDiagonal(matrix, condition){
+//     let zero = 0,
+//         sum = 0,
+//         count  = 0;
+    
+//     for(let i = 1; i < matrix.length; i++){
+//         for(let j = 0; j < i; j++){        
+//             if(matrix[i][j] === 0){
+//                 zero++;
+//             }
+//             sum += matrix[i][j];
+//             count++;
+//         }
+//     }
+    
+//     if(condition === "zero"){
+//         return zero;
+//     } else if (condition === "sum"){
+//         return sum;
+//     } else if (condition === "mean"){
+//         return sum/count;
+//     } else{
+//         return "Задайте вторым аргументом одно изи значений(zero, sum или mean)";
+//     }
+// }
+// console.log(getBottomDiagonal([
+//     [1,2,3,4,5],
+//     [1,2,3,4,0],
+//     [9,8,7,6,5],
+//     [9,8,0,6,5],
+//     [0,8,7,6,5],
+// ], 'sum'));
+
+// function getDiagonal(matrix, condition){
+//     let zero = 0,
+//         sum = 0,
+//         count  = 0;
+    
+//     for(let i = 0; i < matrix.length; i++){
+//         for(let j = i; j < i + 1; j++){        
+//             if(matrix[i][j] === 0){
+//                 zero++;
+//             }
+//             sum += matrix[i][j];
+//             count++;
+//         }
+//     }
+    
+//     if(condition === "zero"){
+//         return zero;
+//     } else if (condition === "sum"){
+//         return sum;
+//     } else if (condition === "mean"){
+//         return sum/count;
+//     } else{
+//         return "Задайте вторым аргументом одно изи значений(zero, sum or mean)";
+//     }
+// }
+// console.log(getDiagonal([
+//     [1,2,3,4,5],
+//     [1,2,3,4,0],
+//     [9,8,7,6,5],
+//     [9,8,0,6,5],
+//     [0,8,7,6,5],
+// ], 'sum'));
 
 
 // 1+ 2+ 3+ 4+ 5+ 6+ 7+ 8+ 9+ 10+ 11+ 12+ 13++- 14+ 15+ 16+ 17- 18- 19- 20- 

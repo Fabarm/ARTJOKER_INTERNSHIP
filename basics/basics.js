@@ -447,5 +447,22 @@
 //     [0,8,7,6,5],
 // ], 'sum'));
 
+// // 18
+// let fibonacci = {
+//     [Symbol.iterator]: function* (limit){
+//         limit = limit || 5;
+//         let prePrevValue  = 0;
+//         let prevValue  = 1;
 
-// 1+ 2+ 3+ 4+ 5+ 6+ 7+ 8+ 9+ 10+ 11+ 12+ 13++- 14+ 15+ 16+ 17- 18- 19- 20- 
+//         for(let i = 1; i <= limit; i++){        
+//             let result = prePrevValue  + prevValue;
+//                 [prePrevValue, prevValue ]=[prevValue, result];
+
+//             yield result;
+//         }
+//     }
+// }
+
+
+
+// 1+ 2+ 3+ 4+ 5+ 6+ 7+ 8+ 9+ 10+ 11+ 12+ 13++- 14+ 15+ 16+ 17+- 18+-- 19- 20- 

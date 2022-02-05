@@ -1,8 +1,22 @@
 "use strict"
 // // 1
-// function isAnagram(firstWord, secondWord) {    
-//     return first.toLowerCase().split('').sort().join("") ===
-//             second.toLowerCase().split('').sort().join("");
+// function isAnagram(firstWord, secondWord) {
+//     let firstArray = sortArray(firstWord.toLowerCase().split(''));
+//     let secondArray = sortArray(secondWord.toLowerCase().split(''));
+//
+//     function sortArray (array) {
+//         for (let n = 0; n < array.length; n++) {
+//             for (let i = 0; i < array.length - 1 - n; i++) {
+//                 if (array[i] > array[i + 1]) {
+//                     const smb = array[i]
+//                     array[i] = array[i + 1]
+//                     array[i + 1] = smb
+//                 }
+//             }
+//         }
+//         return array
+//     }
+//     return firstArray.join("") === secondArray.join("");
 // }
 // console.log(isAnagram('kamuw', 'muwka'));
 
@@ -209,11 +223,11 @@
 // console.log(getBinary(13));
 
 // function getDenary(binaryNumber){
-//     let array = [],
-//         result = 0;
+//     let array = [];
+//     let result = 0;
 //     for(let i = 0; i = binaryNumber; i++){
 //         array.unshift(binaryNumber % 10);
-//         binaryNumber = Math.floor(nubinaryNumber / 10);
+//         binaryNumber = Math.floor(binaryNumber / 10);
 //     }
 
 //     for(let j = 0; j < array.length; j++){
@@ -250,8 +264,8 @@
 
 // // 14
 // function averageElementsArray(array, callback){
-//     let result = 0,
-//         counter = 0;
+//     let result = 0;
+//     let counter = 0;
 
 //     for(let i = 0; i < array.length; i++){
 //         if(callback(array[i])){
@@ -264,8 +278,8 @@
 // console.log(averageElements([10,20,30,40,50,6,7,8,9,10,11,12], item => item));
 
 // function averageElementsMatrix(matrix, callback){
-//     let result = 0,
-//         counter = 0;
+//     let result = 0;
+//     let counter = 0;
     
 //     for(let i = 0; i < matrix.length; i++){
 //         for(let j = 0; j < matrix[i].length; j++){
@@ -318,59 +332,63 @@
 // ]));
 
 // // 16
-// function removeRow(array){
-//     let res = array.filter(item => {
-//         let flag = true;
-//         for(let i = 0; i < item.length; i++){
-//             if(item[i] === 0){
-//                 flag = false;
-//                 break;
+// function removeRow(matrix){
+//     let index = [];
+//     for(let i = 0; i < matrix.length; i++){
+//         for (let j = 0; j < matrix[i].length; j++){
+//             if(matrix[i][j] === 0){
+//                 index.push(matrix.indexOf(matrix[i]))
 //             }
 //         }
-//         if(flag === true){
-//             return item;
-//         }
-//     })
-//     return res;
+//     }
+//     let counter = 0
+//     for (let i = 0; i < index.length; i++){
+//         matrix.splice(index[i] - counter, 1);
+//         counter++
+//     }
+//     return matrix
 // }
 // console.log(removeRow([
-//     [3,4,5,6],
+//     [1,2,5,4],
 //     [1,2,0,6],
-//     [9,8,7,5],
-//     [5,0,1,7],
+//     [2,8,7,5],
+//     [3,8,0,5]
 // ]));
 
-// function removeColumn(array){
-//     function transform(arr){
-//         return arr[0].map((_, i) => arr.map(row => row[i]));
-//     }
-    
-//     return transform(newMatrix = transform(array).filter(item => {
-//         let flag = true;
-//         for(let i = 0; i < item.length; i++){
-//             if(item[i] === 0){
-//                 flag = false;
-//                 break;
+// function removeColumn(matrix){
+//     let index = [];
+//     for(let i = 0; i < matrix.length; i++){
+//         for (let j = 0; j < matrix[i].length; j++){
+//             if(matrix[i][j] === 0){
+//                 index.push(matrix[i].indexOf(matrix[i][j]))
 //             }
 //         }
-//         if(flag === true){
-//             return item;
+//     }
+//
+//     for (let i = 0; i < matrix.length; i++){
+//         let counter = 0
+//         for(let j = 0; j < index.length; j++) {
+//             matrix[i].splice(index[j + counter], 1);
+//             counter++
 //         }
-//     }));
+//
+//     }
+//
+//     return matrix
 // }
 // console.log(removeColumn([
 //     [1,2,3,4,5],
-//     [1,2,3,4,0],
+//     [1,2,3,4,8],
 //     [9,8,7,6,5],
-//     [9,8,0,6,5],
-//     [0,8,7,6,5],
+//     [3,4,1,6,5],
+//     [0,8,7,6,5]
 // ]));
 
 // // 17
 // function getTopDiagonal(matrix, condition){
-//     let zero = 0,
-//         sum = 0,
-//         count  = 0;
+//     let zero = 0;
+//     let sum = 0;
+//     let count  = 0;
     
 //     for(let i = 0; i < matrix.length; i++){
 //         for(let j = i + 1; j < matrix[i].length; j++){        
@@ -389,7 +407,7 @@
 //     } else if (condition === "mean"){
 //         return sum/count;
 //     } else{
-//         return "Задайте вторым аргументом одно изи значений(zero, sum or mean)";
+//         return "Задайте вторым аргументом одно из значений(zero, sum or mean)";
 //     }
 // }
 // console.log(getTopDiagonal([
@@ -401,9 +419,9 @@
 // ], 'mean'));
 
 // function getBottomDiagonal(matrix, condition){
-//     let zero = 0,
-//         sum = 0,
-//         count  = 0;
+//     let zero = 0;
+//     let sum = 0;
+//     let count  = 0;
     
 //     for(let i = 1; i < matrix.length; i++){
 //         for(let j = 0; j < i; j++){        
@@ -422,7 +440,7 @@
 //     } else if (condition === "mean"){
 //         return sum/count;
 //     } else{
-//         return "Задайте вторым аргументом одно изи значений(zero, sum или mean)";
+//         return "Задайте вторым аргументом одно из значений(zero, sum или mean)";
 //     }
 // }
 // console.log(getBottomDiagonal([
@@ -434,12 +452,12 @@
 // ], 'sum'));
 
 // function getDiagonal(matrix, condition){
-//     let zero = 0,
-//         sum = 0,
-//         count  = 0;
-    
+//     let zero = 0;
+//     let sum = 0;
+//     let count  = 0;
+//
 //     for(let i = 0; i < matrix.length; i++){
-//         for(let j = i; j < i + 1; j++){        
+//         for(let j = i; j < i + 1; j++){
 //             if(matrix[i][j] === 0){
 //                 zero++;
 //             }
@@ -447,7 +465,7 @@
 //             count++;
 //         }
 //     }
-    
+//
 //     if(condition === "zero"){
 //         return zero;
 //     } else if (condition === "sum"){
@@ -455,7 +473,7 @@
 //     } else if (condition === "mean"){
 //         return sum/count;
 //     } else{
-//         return "Задайте вторым аргументом одно изи значений(zero, sum or mean)";
+//         return "Задайте вторым аргументом одно из значений(zero, sum or mean)";
 //     }
 // }
 // console.log(getDiagonal([
@@ -484,4 +502,4 @@
 
 
 
-// 1+ 2+ 3+ 4+ 5+ 6+ 7+ 8+ 9+ 10+ 11+ 12+ 13+++ 14+ 15+ 16+ 17+- 18+-- 19- 20-
+// 1+ 2+ 3+ 4+ 5+ 6+ 7+ 8+ 9+ 10+ 11+ 12+ 13+++ 14+ 15+ 16+ 17+ 18+-- 19- 20-

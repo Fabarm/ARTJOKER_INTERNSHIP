@@ -1,4 +1,4 @@
-'use stric'
+"use strict"
 // // 1
 // function isAnagram(firstWord, secondWord) {    
 //     return first.toLowerCase().split('').sort().join("") ===
@@ -7,48 +7,48 @@
 // console.log(isAnagram('kamuw', 'muwka'));
 
 // // 3
-// const calc = function(num){
+// const countingNumber = function(givenNumber){
 //     let counter = 0; 
-//     for(let i=0; i=num; i++){
-//         num = Math.floor(num/10);
+//     for(let i = 0; i = givenNumber; i++){
+//         givenNumber = Math.floor(givenNumber/10);
 //         counter++;
 //     }
 //     return counter;
 // } 
 
-// const amount = function (num, count) {    
-//     count = count || 0;
+// const countingNumberRecursion = function (givenNumber, counter) {
+//     counter = counter || 0;
 
-//     if(num < 9){
-//         count++;
-//         return count;
+//     if(givenNumber < 9){
+//         counter++;
+//         return counter;
 //     }
         
-//     return amount(Math.floor(num/10), ++count);
+//     return countingNumber(Math.floor(givenNumber/10), ++counter);
 // }
 
 // // 4
-// function isPalindrome(str){
-//     return  str === str.toLowerCase().split('').reverse().join('');   
+// function isPalindrome(word){
+//     return  str === word.toLowerCase().split('').reverse().join('');
 // }
 // console.log(isPalindrome('kabak'));
 
 // // 5
-// function calcWords(str){
-//     let words = str.toLowerCase().split(' ');
+// function calcWords(sentence){
+//     let words = sentence.toLowerCase().split(' ');
 //     let newWords = words.filter((item, index) => words.indexOf(item) === index);
 //     return newWords.length;    
 // }
 
 // // 6
-// function entryWords(str){
+// function entryWords(sentence){
 //     let words = {};
-//     let newStr = str.toLowerCase().split(' ');
-//     for(let i = 0; i < newStr.length; i++){
-//         if(words[newStr[i]] === undefined){
-//         words[newStr[i]] = 1;
+//     let arrayWords = sentence.toLowerCase().split(' ');
+//     for(let i = 0; i < arrayWords.length; i++){
+//         if(words[arrayWords[i]] === undefined){
+//         words[arrayWords[i]] = 1;
 //         } else {
-//             words[newStr[i]] += 1;
+//             words[arrayWords[i]] += 1;
 //         }
 //     }
 //     return words
@@ -61,9 +61,9 @@
 //     this.perimeter = (length + width)*2;
 // }
 
-// function Riangle(a, b, c){
-//     this.square = (a*b)/2;
-//     this.perimeter = a + b + c;
+// function Triangle(sideA, sideB, sideC){
+//     this.square = (sideA*sideB)/2;
+//     this.perimeter = sideA + sideB + sideC;
 // }
 
 // function Circle(radius){
@@ -84,17 +84,17 @@
 //     };
 // }
 
-// class Riangle{
-//     constructor(a, b, c){
-//         this.a = a;
-//         this.b = b;
-//         this.c = c;
+// class Triangle{
+//     constructor(sideA, sideB, sideC){
+//         this.sideA = sideA;
+//         this.sideB = sideB;
+//         this.sideC = sideC;
 //     }
 //     getPerimeter(){
-//         return (this.a + this.b + this.c);
+//         return (this.sideA + this.sideB + this.sideC);
 //     };
 //     getSquare(){
-//         return (this.a * this.b)/2;
+//         return (this.sideA * this.sideB)/2;
 //     };
 // }
 
@@ -120,19 +120,19 @@
 //     return res;
 // }
 
-// const factorial = function(num){
+// const factorialRecursion = function(num){
 //     return num ? num * factorial(num-1) : 1;    
 // }
 
 // const factorialMemo = (function () {
 //     let memo = {};
-//     return function fact(num){
+//     return function factorial(num){
 //         if (num === 0) {
 //             return 1;
 //         }
 
 //         if(memo[num] === undefined) {
-//             memo[num] = fact(num - 1);
+//             memo[num] = factorial(num - 1);
 //         }
 
 //         return num * memo[num];
@@ -140,7 +140,7 @@
 // })();
 
 // // 9
-// function getSumElement(array, callback){
+// function getSumElementArray(array, callback){
 //     let count = 0;
 //     for(let i = 0; i < array.length; i++){        
 //         if(callback(array[i])){
@@ -151,77 +151,77 @@
 // };
 // console.log(getSumElement([1,1,2,3,4,5,6,7,8,9,10], item => item%2 === 0));
 
-// function getSumElement(array, callback, i){
-//     i = i || 0;
+// function getSumElementRecursion(array, callback, index){
+//     index = index || 0;
 //     let sum = null;    
-//     sum += callback(array[i]) ? array[i] :  0;
-//     if(array.length <= i) {
+//     sum += callback(array[index]) ? array[index] :  0;
+//     if(array.length <= index) {
 //         return sum ;
 //     }
-//     return sum + getSumElement(array, callback, ++i)
+//     return sum + getSumElement(array, callback, ++index)
 // };
-// console.log(getSumElement([1,1,2,3,4,5,6,7,8,9,10], item => item%3 === 0));
+// console.log(getSumElement([1,1,2,3,4,5,6,7,8,9,10], item => item % 3 === 0));
 
-// function getSumElemen(array, callback){
-//     let count = 0;
-//     for(let i = 0; i < array.length; i++){
-//         for(let j = 0; j < array[i].length; j++){        
-//             if(callback(array[i][j])){
-//                 count += array[i][j];
+// function getSumElemenMatrix(matrix, callback){
+//     let counter = 0;
+//     for(let i = 0; i < matrix.length; i++){
+//         for(let j = 0; j < matrix[i].length; j++){
+//             if(callback(matrix[i][j])){
+//                 counter += matrix[i][j];
 //             }
 //         }
 //     }
-//     return count;
+//     return counter;
 // }
 
 // // 10
-// function getAmountElement(array, callback){
-//     let count = 0;
+// function getAmountElementArray(array, callback){
+//     let counter = 0;
 //     for(let i = 0; i < array.length; i++){        
 //         if(callback(array[i])){
-//             count += 1;
+//             counter += 1;
 //         }
 //     }
-//     return count;
+//     return counter;
 // }
 
-// function getAmountElement(array, callback){
-//     let count = 0;
-//     for(let i = 0; i < array.length; i++){
-//         for(let j = 0; j < array[i].length; j++){        
-//             if(callback(array[i][j])){
-//                 count += 1;
+// function getAmountElementMatrix(matrix, callback){
+//     let counter = 0;
+//     for(let i = 0; i < matrix.length; i++){
+//         for(let j = 0; j < matrix[i].length; j++){
+//             if(callback(matrix[i][j])){
+//                 counter += 1;
 //             }
 //         }
 //     }
-//     return count;
+//     return counter;
 // }
 
 // // 11
-// function getBinary(num){
-//     let arr = [];
-//     while(num>0){
-//         arr.unshift(num%2);
-//         num = Math.floor(num/2);
+// function getBinary(denaryNumber){
+//     let result = [];
+//     while(denaryNumber > 0){
+//         result.unshift(denaryNumber % 2);
+//         denaryNumber = Math.floor(denaryNumber / 2);
 //     }
-//     return Number(arr.join(''));
+//     return Number(result.join(''));
 // }
 // console.log(getBinary(13));
 
-// function getBinary(num){
-//     let arr = [],
-//         res = 0;
-//     for(let i = 0; i=num; i++){
-//         arr.unshift(num%10);
-//         num = Math.floor(num/10);
+// function getDenary(binaryNumber){
+//     let array = [],
+//         result = 0;
+//     for(let i = 0; i = binaryNumber; i++){
+//         array.unshift(binaryNumber % 10);
+//         binaryNumber = Math.floor(nubinaryNumber / 10);
 //     }
 
-//     for(let j = 0; j < arr.length; j++){
-//         res += arr[j]*2**j;        
+//     for(let j = 0; j < array.length; j++){
+//         result += array[j] * 2**j;
 //     }
-//     return res; 
+//     return result;
 // }
-// console.log(getBinary(101011));
+// console.log(getDenary(101011));
 
 // // 13
 // function getSum(min, max, callback){
@@ -234,42 +234,61 @@
 //     return count;
 // }
 
+// function getSumRecursion(min, max, callback){
+//     let sum = 0;
+//
+//     if(callback(min)){
+//         sum += min;
+//     }
+//
+//     if (++min <= max) {
+//         sum += getSumRecursion(min, max, callback);
+//     }
+//
+//     return sum;
+// }
+
 // // 14
-// function averageElements(array, callback){
-//     let res = 0,
+// function averageElementsArray(array, callback){
+//     let result = 0,
 //         counter = 0;
 
 //     for(let i = 0; i < array.length; i++){
 //         if(callback(array[i])){
-//             res += array[i];
+//             result += array[i];
 //             counter++;
 //         }
 //     }
-//     return res/counter;
+//     return result/counter;
 // }
 // console.log(averageElements([10,20,30,40,50,6,7,8,9,10,11,12], item => item));
 
-// function averageElements(array, callback){
-//     let res = 0,
+// function averageElementsMatrix(matrix, callback){
+//     let result = 0,
 //         counter = 0;
     
-//     for(let i = 0; i < array.length; i++){
-//         for(let j = 0; j < array[i].length; j++){        
-//             if(callback(array[i][j])){
-//                 res += array[i][j];
+//     for(let i = 0; i < matrix.length; i++){
+//         for(let j = 0; j < matrix[i].length; j++){
+//             if(callback(matrix[i][j])){
+//                 result += matrix[i][j];
 //                 counter++;
 //             }
 //         }
 //     }
-//     return res/counter;
+//     return result/counter;
 // }
 // console.log(averageElements([[10,20,30,40,50],[6,7,80,9,10,11,12]], item => item%3===0));
 
 // // 15
-// function transformMatrix(array){
-//     let newMatrix = array[0].map((_, i) => array.map(row => row[i]));
-    
-//     return newMatrix;
+// function transformMatrix(matrix) {
+//     for (let i = 0; i < matrix.length; i++) {
+//         for (let j = 0; j < i; j++) {
+//             let  somebody = matrix[i][j];
+//             matrix[i][j] = matrix[j][i];
+//             matrix[j][i] =  somebody;
+//         }
+//     }
+//     return matrix;
 // }
 // console.log(transformMatrix([
 //     [1,2,3],
@@ -277,15 +296,15 @@
 //     [7,8,9]
 // ]));
 
-// function SumMatrix(firstMatr,secondMatr){   
-//     let res = [];
-//     for (let i = 0; i < firstMatr.length; i++){ 
-//         res[i] = [];
-//         for (let j = 0; j < firstMatr[0].length; j++){
-//            res[i][j] = firstMatr[i][j]+secondMatr[i][j];
+// function SumMatrix(firstMatrix,secondMatrix){
+//     let result = [];
+//     for (let i = 0; i < firstMatrix.length; i++){
+//         result[i] = [];
+//         for (let j = 0; j < firstMatrix[0].length; j++){
+//            result[i][j] = firstMatrix[i][j]+secondMatrix[i][j];
 //         }
 //     }
-//     return res;
+//     return result;
 // }
 // console.log(SumMatrix([
 //     [1,2,3],
@@ -465,4 +484,4 @@
 
 
 
-// 1+ 2+ 3+ 4+ 5+ 6+ 7+ 8+ 9+ 10+ 11+ 12+ 13++- 14+ 15+ 16+ 17+- 18+-- 19- 20- 
+// 1+ 2+ 3+ 4+ 5+ 6+ 7+ 8+ 9+ 10+ 11+ 12+ 13+++ 14+ 15+ 16+ 17+- 18+-- 19- 20-

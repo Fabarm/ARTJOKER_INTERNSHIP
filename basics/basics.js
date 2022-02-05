@@ -500,6 +500,23 @@
 //     }
 // }
 
+// // 19
+// let trafficLights = {
+//     [Symbol.iterator]: function* (){
+//         let lights = ['Красный', 'Желтый', "Зеленый"]
+//         let counter = 0;
+//         for(let i = 0; i < 15; i++) {
+//             if(counter === 3){
+//                 counter = 0;
+//             }
+//             yield lights[counter++]
+//         }
+//     }
+// }
+//
+// for(let i of trafficLights){
+//     console.log(i)
+// }
 
 
 // 1+ 2+ 3+ 4+ 5+ 6+ 7+ 8+ 9+ 10+ 11+ 12+ 13+++ 14+ 15+ 16+ 17+ 18+-- 19- 20-

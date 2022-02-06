@@ -518,5 +518,111 @@
 //     console.log(i)
 // }
 
+// // 20
+// function comparisonZero(number){
+//     if(Math.sqrt(number**2) === number){
+//         return "Больше 0"
+//     }else{
+//         return "Меньше 0"
+//     }
+// }
 
-// 1+ 2+ 3+ 4+ 5+ 6+ 7+ 8+ 9+ 10+ 11+ 12+ 13+++ 14+ 15+ 16+ 17+ 18+-- 19- 20-
+// function getSumBits(number){
+//     let result = [];
+//     while(number > 0){
+//         result.unshift(number % 2);
+//         number = Math.floor(number / 2);
+//     }
+//     let obj = {
+//         one: 0,
+//         zero: 0
+//     };
+//     for (let i = 0; i < result.length; i++){
+//         if(result[i] === 1){
+//             obj.one+=1;
+//         }else{
+//             obj.zero+=1;
+//         }
+//     }
+//     return obj;
+// }
+
+// const bitWiseOperatorFirstVariant =  (num) =>  -num - 1 ;
+
+// function bitWiseOperatorSecondVariant (num){
+//     if(num < 0){
+//         return Math.abs(num)-1
+//     }
+//     if(num > 0){
+//         return num - (num*2 + 1)
+//     }
+//     return -1
+// }
+
+// function bitWiseOperator(number){
+//
+//     function getBinary(denaryNumber){
+//         let result = [];
+//         while(denaryNumber > 0){
+//             result.unshift(denaryNumber % 2);
+//             denaryNumber = Math.floor(denaryNumber / 2);
+//         }
+//         return result
+//     }
+//     let binaryArray = getBinary(number);
+//     console.log(binaryArray)
+//
+//     function getDenary(array){
+//
+//         let result = 0;
+//
+//         for(let j = 0; j < array.length; j++){
+//             result += array[j] * 2**j;
+//         }
+//         return result;
+//     }
+//
+//     let invertedArray = binaryArray.map(item => {
+//         if(item === 0){
+//             return 1
+//         }else {
+//             return 0
+//         }
+//     }).reverse();
+//     console.log(invertedArray)
+//
+//     let arr = [];
+//     let count = 1;
+//     if(invertedArray[0] === 1){
+//         for (let i = 0; i < invertedArray.length; i++){
+//             if(invertedArray[i] + count === 2){
+//                 arr.push(invertedArray[i]);
+//             }
+//             if(invertedArray[i] + count === 1 && count === 1){
+//                 arr.push(invertedArray[i] + count);
+//                 count--;
+//                 continue;
+//             }
+//             if(invertedArray[i] + count === 1){
+//                 arr.push(invertedArray[i] + count);
+//             }
+//             if(invertedArray[i] + count === 0){
+//                 arr.push(invertedArray[i]);
+//             }
+//         }
+//     }else{
+//         arr.push(1);
+//         for (let i = 1; i < invertedArray.length; i++){
+//             arr.push(invertedArray[i])
+//         }
+//     }
+//     let qwe = arr.reverse()
+//     console.log(qwe)
+//
+//
+// }
+//
+// console.log(bitWiseOperator(-13))
+
+
+// 1+ 2+ 3+ 4+ 5+ 6+ 7+ 8+ 9+ 10+ 11+ 12+ 13+++ 14+ 15+ 16+ 17+ 18+-- 19+ 20+++

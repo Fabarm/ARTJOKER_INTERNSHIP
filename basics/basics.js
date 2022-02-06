@@ -518,6 +518,54 @@
 //     console.log(i)
 // }
 
+// function fibonacciArrayRecurse(number, index, fibonacciArray) {
+//     index = index || 1;
+//     fibonacciArray = fibonacciArray || [0, 1].splice(0, number);
+//
+//     if (++index < number) {
+//         fibonacciArray.push(fibonacciArray[index - 1] + fibonacciArray[index - 2]);
+//         fibonacciArrayRecurse(number, index, fibonacciArray);
+//     }
+//
+//     return fibonacciArray;
+// }
+//
+//
+// const fibonacciArrayRecursionMemo = (function () {
+//     const memo = {};
+//
+//     return function pushFibonacci(number, arrayFibonacci) {
+//         arrayFibonacci = arrayFibonacci || [];
+//
+//         function getFibonacciNumber(number) {
+//             let result = 0;
+//
+//             if (memo[number] !== undefined) {
+//                 result = memo[number];
+//                 return result;
+//             }
+//
+//             if (number <= 1) {
+//                 memo[number] = number;
+//                 result = number;
+//                 return result;
+//             } else {
+//                 result +=
+//                     getFibonacciNumber(number - 1) + getFibonacciNumber(number - 2);
+//                 memo[number] = result;
+//             }
+//             return result;
+//         }
+//
+//         if (--number >= 0) {
+//             arrayFibonacci.unshift(getFibonacciNumber(number));
+//             pushFibonacci(number, arrayFibonacci);
+//         }
+//
+//         return arrayFibonacci;
+//     };
+// })();
+
 // // 20
 // function comparisonZero(number){
 //     if(Math.sqrt(number**2) === number){

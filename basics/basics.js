@@ -1,6 +1,6 @@
 "use strict"
 // // 1
-// function isAnagram(firstWord, secondWord) {
+// function checkIsAnagram(firstWord, secondWord) {
 //     let firstArray = sortArray(firstWord.toLowerCase().split(''));
 //     let secondArray = sortArray(secondWord.toLowerCase().split(''));
 //
@@ -8,17 +8,16 @@
 //         for (let n = 0; n < array.length; n++) {
 //             for (let i = 0; i < array.length - 1 - n; i++) {
 //                 if (array[i] > array[i + 1]) {
-//                     const smb = array[i]
-//                     array[i] = array[i + 1]
-//                     array[i + 1] = smb
+//                     const smb = array[i];
+//                     array[i] = array[i + 1];
+//                     array[i + 1] = smb;
 //                 }
 //             }
 //         }
-//         return array
+//         return array;
 //     }
 //     return firstArray.join("") === secondArray.join("");
 // }
-// console.log(isAnagram('kamuw', 'muwka'));
 
 // // 3
 // const countingNumber = function(givenNumber){
@@ -42,16 +41,27 @@
 // }
 
 // // 4
-// function isPalindrome(word){
-//     return  str === word.toLowerCase().split('').reverse().join('');
+// function checkIsPalindrome(word){
+//     let wordArray = word.toLowerCase().split('');
+//     let newWordArray = [];
+//     for (let i = wordArray.length; i >= 0; i--){
+//         newWordArray.push(wordArray[i])
+//     }
+//     return  newWordArray.join('') === word;
 // }
-// console.log(isPalindrome('kabak'));
 
 // // 5
 // function calcWords(sentence){
-//     let words = sentence.toLowerCase().split(' ');
-//     let newWords = words.filter((item, index) => words.indexOf(item) === index);
-//     return newWords.length;    
+//     let arrayWords = sentence.toLowerCase().split(' ');
+//     let newWords = [];
+    
+//     for(let i = 0; i < arrayWords.length; i++){
+//         if(arrayWords.indexOf(arrayWords[i]) === i){
+//             newWords.push(arrayWords[i]);
+//         }
+//     }
+
+//     return newWords.length;
 // }
 
 // // 6
@@ -65,9 +75,8 @@
 //             words[arrayWords[i]] += 1;
 //         }
 //     }
-//     return words
+//     return words;
 // }
-// console.log(entryWords('hello world my name is my world'));
 
 // // 7
 // function Rectangle(length, width){
@@ -81,8 +90,8 @@
 // }
 
 // function Circle(radius){
-//     this.square = Number((Math.PI * (radius**2)).toFixed(2));
-//     this.perimeter = Number((2 * Math.PI * radius).toFixed(2));
+//     this.square = Math.PI * (radius**2);
+//     this.perimeter = 2 * Math.PI * radius;
 // }
 
 // class Rectangle {
@@ -118,10 +127,10 @@
 //     }
     
 //     getPerimeter(){
-//         return Number((2 * Math.PI * this.radius).toFixed(2));
+//         return 2 * Math.PI * this.radius;
 //     };
 //     getSquare(){
-//         return Number((Math.PI * (this.radius**2)).toFixed(2));
+//         return Math.PI * (this.radius**2);
 //     };
 // }
 
@@ -129,7 +138,7 @@
 // const factorial = function (num){
 //     let res = 1;
 //     for(let i = 1; i <= num; i++){
-//         res = res * i
+//         res = res * i;
 //     }
 //     return res;
 // }
@@ -162,8 +171,7 @@
 //         }
 //     }
 //     return count;
-// };
-// console.log(getSumElement([1,1,2,3,4,5,6,7,8,9,10], item => item%2 === 0));
+// }
 
 // function getSumElementRecursion(array, callback, index){
 //     index = index || 0;
@@ -172,9 +180,8 @@
 //     if(array.length <= index) {
 //         return sum ;
 //     }
-//     return sum + getSumElement(array, callback, ++index)
-// };
-// console.log(getSumElement([1,1,2,3,4,5,6,7,8,9,10], item => item % 3 === 0));
+//     return sum + getSumElement(array, callback, ++index);
+// }
 
 // function getSumElemenMatrix(matrix, callback){
 //     let counter = 0;
@@ -193,7 +200,7 @@
 //     let counter = 0;
 //     for(let i = 0; i < array.length; i++){        
 //         if(callback(array[i])){
-//             counter += 1;
+//             counter++;
 //         }
 //     }
 //     return counter;
@@ -204,7 +211,7 @@
 //     for(let i = 0; i < matrix.length; i++){
 //         for(let j = 0; j < matrix[i].length; j++){
 //             if(callback(matrix[i][j])){
-//                 counter += 1;
+//                 counter++;
 //             }
 //         }
 //     }
@@ -220,7 +227,6 @@
 //     }
 //     return Number(result.join(''));
 // }
-// console.log(getBinary(13));
 
 // function getDenary(binaryNumber){
 //     let array = [];
@@ -235,14 +241,13 @@
 //     }
 //     return result;
 // }
-// console.log(getDenary(101011));
 
 // // 13
 // function getSum(min, max, callback){
 //     let count = 0;
 //     for(let i = min; i <= max; i++){        
 //         if(callback(i)){
-//             count += i;
+//             count++;
 //         }
 //     }
 //     return count;
@@ -275,7 +280,6 @@
 //     }
 //     return result/counter;
 // }
-// console.log(averageElements([10,20,30,40,50,6,7,8,9,10,11,12], item => item));
 
 // function averageElementsMatrix(matrix, callback){
 //     let result = 0;
@@ -291,7 +295,6 @@
 //     }
 //     return result/counter;
 // }
-// console.log(averageElements([[10,20,30,40,50],[6,7,80,9,10,11,12]], item => item%3===0));
 
 // // 15
 // function transformMatrix(matrix) {
@@ -304,11 +307,6 @@
 //     }
 //     return matrix;
 // }
-// console.log(transformMatrix([
-//     [1,2,3],
-//     [4,5,6],
-//     [7,8,9]
-// ]));
 
 // function SumMatrix(firstMatrix,secondMatrix){
 //     let result = [];
@@ -320,16 +318,6 @@
 //     }
 //     return result;
 // }
-// console.log(SumMatrix([
-//     [1,2,3],
-//     [4,5,6],
-//     [7,8,9]
-// ],
-// [
-//     [1,2,3],
-//     [4,5,6],
-//     [7,8,9]
-// ]));
 
 // // 16
 // function removeRow(matrix){
@@ -337,135 +325,82 @@
 //     for(let i = 0; i < matrix.length; i++){
 //         for (let j = 0; j < matrix[i].length; j++){
 //             if(matrix[i][j] === 0){
-//                 index.push(matrix.indexOf(matrix[i]))
+//                 index.push(matrix.indexOf(matrix[i]));
 //             }
 //         }
 //     }
-//     let counter = 0
+//     let counter = 0;
 //     for (let i = 0; i < index.length; i++){
 //         matrix.splice(index[i] - counter, 1);
-//         counter++
+//         counter++;
 //     }
-//     return matrix
+//     return matrix;
 // }
-// console.log(removeRow([
-//     [1,2,5,4],
-//     [1,2,0,6],
-//     [2,8,7,5],
-//     [3,8,0,5]
-// ]));
 
 // function removeColumn(matrix){
 //     let index = [];
 //     for(let i = 0; i < matrix.length; i++){
 //         for (let j = 0; j < matrix[i].length; j++){
 //             if(matrix[i][j] === 0){
-//                 index.push(matrix[i].indexOf(matrix[i][j]))
+//                 index.push(matrix[i].indexOf(matrix[i][j]));
 //             }
 //         }
 //     }
 //
 //     for (let i = 0; i < matrix.length; i++){
-//         let counter = 0
+//         let counter = 0;
 //         for(let j = 0; j < index.length; j++) {
 //             matrix[i].splice(index[j + counter], 1);
-//             counter++
+//             counter++;
 //         }
 //
 //     }
 //
-//     return matrix
+//     return matrix;
 // }
-// console.log(removeColumn([
-//     [1,2,3,4,5],
-//     [1,2,3,4,8],
-//     [9,8,7,6,5],
-//     [3,4,1,6,5],
-//     [0,8,7,6,5]
-// ]));
 
 // // 17
-// function getTopDiagonal(matrix, condition){
+// function getTopDiagonal(matrix, direction, condition){
 //     let zero = 0;
 //     let sum = 0;
 //     let count  = 0;
     
-//     for(let i = 0; i < matrix.length; i++){
-//         for(let j = i + 1; j < matrix[i].length; j++){        
-//             if(matrix[i][j] === 0){
-//                 zero++;
+//     if(direction === "topDiagonal"){
+//         for(let i = 0; i < matrix.length; i++){
+//             for(let j = i + 1; j < matrix[i].length; j++){        
+//                 if(matrix[i][j] === 0){
+//                     zero++;
+//                 }
+//                 sum += matrix[i][j];
+//                 count++;
 //             }
-//             sum += matrix[i][j];
-//             count++;
 //         }
 //     }
-    
-//     if(condition === "zero"){
-//         return zero;
-//     } else if (condition === "sum"){
-//         return sum;
-//     } else if (condition === "mean"){
-//         return sum/count;
-//     } else{
-//         return "Задайте вторым аргументом одно из значений(zero, sum or mean)";
-//     }
-// }
-// console.log(getTopDiagonal([
-//     [1,2,3,4,5],
-//     [1,2,3,4,0],
-//     [9,8,7,6,5],
-//     [9,8,0,6,5],
-//     [0,8,7,6,5],
-// ], 'mean'));
 
-// function getBottomDiagonal(matrix, condition){
-//     let zero = 0;
-//     let sum = 0;
-//     let count  = 0;
-    
-//     for(let i = 1; i < matrix.length; i++){
-//         for(let j = 0; j < i; j++){        
-//             if(matrix[i][j] === 0){
-//                 zero++;
+//     if(direction === "bottomDiagonal"){
+//         for(let i = 1; i < matrix.length; i++){
+//             for(let j = 0; j < i; j++){        
+//                 if(matrix[i][j] === 0){
+//                     zero++;
+//                 }
+//                 sum += matrix[i][j];
+//                 count++;
 //             }
-//             sum += matrix[i][j];
-//             count++;
 //         }
 //     }
-    
-//     if(condition === "zero"){
-//         return zero;
-//     } else if (condition === "sum"){
-//         return sum;
-//     } else if (condition === "mean"){
-//         return sum/count;
-//     } else{
-//         return "Задайте вторым аргументом одно из значений(zero, sum или mean)";
-//     }
-// }
-// console.log(getBottomDiagonal([
-//     [1,2,3,4,5],
-//     [1,2,3,4,0],
-//     [9,8,7,6,5],
-//     [9,8,0,6,5],
-//     [0,8,7,6,5],
-// ], 'sum'));
 
-// function getDiagonal(matrix, condition){
-//     let zero = 0;
-//     let sum = 0;
-//     let count  = 0;
-//
-//     for(let i = 0; i < matrix.length; i++){
-//         for(let j = i; j < i + 1; j++){
-//             if(matrix[i][j] === 0){
-//                 zero++;
+//     if(direction === "diagonal"){
+//         for(let i = 0; i < matrix.length; i++){
+//             for(let j = i; j < i + 1; j++){
+//                 if(matrix[i][j] === 0){
+//                     zero++;
+//                 }
+//                 sum += matrix[i][j];
+//                 count++;
 //             }
-//             sum += matrix[i][j];
-//             count++;
 //         }
 //     }
-//
+
 //     if(condition === "zero"){
 //         return zero;
 //     } else if (condition === "sum"){
@@ -473,16 +408,9 @@
 //     } else if (condition === "mean"){
 //         return sum/count;
 //     } else{
-//         return "Задайте вторым аргументом одно из значений(zero, sum or mean)";
+//         return "Задайте третим аргументом одно из значений(zero, sum or mean)";
 //     }
 // }
-// console.log(getDiagonal([
-//     [1,2,3,4,5],
-//     [1,2,3,4,0],
-//     [9,8,7,6,5],
-//     [9,8,0,6,5],
-//     [0,8,7,6,5],
-// ], 'sum'));
 
 // // 18
 // let fibonacci = {
@@ -503,21 +431,18 @@
 // // 19
 // let trafficLights = {
 //     [Symbol.iterator]: function* (){
-//         let lights = ['Красный', 'Желтый', "Зеленый"]
+//         let lights = ['Красный', 'Желтый', "Зеленый"];
 //         let counter = 0;
 //         for(let i = 0; i < 15; i++) {
 //             if(counter === 3){
 //                 counter = 0;
 //             }
-//             yield lights[counter++]
+//             yield lights[counter++];
 //         }
 //     }
 // }
 //
-// for(let i of trafficLights){
-//     console.log(i)
-// }
-
+// 
 // function fibonacciArrayRecurse(number, index, fibonacciArray) {
 //     index = index || 1;
 //     fibonacciArray = fibonacciArray || [0, 1].splice(0, number);
@@ -569,9 +494,9 @@
 // // 20
 // function comparisonZero(number){
 //     if(Math.sqrt(number**2) === number){
-//         return "Больше 0"
+//         return "Больше 0";
 //     }else{
-//         return "Меньше 0"
+//         return "Меньше 0";
 //     }
 // }
 
@@ -599,78 +524,13 @@
 
 // function bitWiseOperatorSecondVariant (num){
 //     if(num < 0){
-//         return Math.abs(num)-1
+//         return Math.abs(num)-1;
 //     }
 //     if(num > 0){
-//         return num - (num*2 + 1)
+//         return num - (num*2 + 1);
 //     }
-//     return -1
+//     return -1;
 // }
-
-// function bitWiseOperator(number){
-//
-//     function getBinary(denaryNumber){
-//         let result = [];
-//         while(denaryNumber > 0){
-//             result.unshift(denaryNumber % 2);
-//             denaryNumber = Math.floor(denaryNumber / 2);
-//         }
-//         return result
-//     }
-//     let binaryArray = getBinary(number);
-//     console.log(binaryArray)
-//
-//     function getDenary(array){
-//
-//         let result = 0;
-//
-//         for(let j = 0; j < array.length; j++){
-//             result += array[j] * 2**j;
-//         }
-//         return result;
-//     }
-//
-//     let invertedArray = binaryArray.map(item => {
-//         if(item === 0){
-//             return 1
-//         }else {
-//             return 0
-//         }
-//     }).reverse();
-//     console.log(invertedArray)
-//
-//     let arr = [];
-//     let count = 1;
-//     if(invertedArray[0] === 1){
-//         for (let i = 0; i < invertedArray.length; i++){
-//             if(invertedArray[i] + count === 2){
-//                 arr.push(invertedArray[i]);
-//             }
-//             if(invertedArray[i] + count === 1 && count === 1){
-//                 arr.push(invertedArray[i] + count);
-//                 count--;
-//                 continue;
-//             }
-//             if(invertedArray[i] + count === 1){
-//                 arr.push(invertedArray[i] + count);
-//             }
-//             if(invertedArray[i] + count === 0){
-//                 arr.push(invertedArray[i]);
-//             }
-//         }
-//     }else{
-//         arr.push(1);
-//         for (let i = 1; i < invertedArray.length; i++){
-//             arr.push(invertedArray[i])
-//         }
-//     }
-//     let qwe = arr.reverse()
-//     console.log(qwe)
-//
-//
-// }
-//
-// console.log(bitWiseOperator(-13))
 
 
 // 1+ 2+ 3+ 4+ 5+ 6+ 7+ 8+ 9+ 10+ 11+ 12+ 13+++ 14+ 15+ 16+ 17+ 18+-- 19+ 20+++

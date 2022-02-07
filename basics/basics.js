@@ -3,7 +3,7 @@
 // function checkIsAnagram(firstWord, secondWord) {
 //     let firstArray = sortArray(firstWord.toLowerCase().split(''));
 //     let secondArray = sortArray(secondWord.toLowerCase().split(''));
-//
+
 //     function sortArray (array) {
 //         for (let n = 0; n < array.length; n++) {
 //             for (let i = 0; i < array.length - 1 - n; i++) {
@@ -18,6 +18,43 @@
 //     }
 //     return firstArray.join("") === secondArray.join("");
 // }
+
+function checkIsAnagram(firstWord, secondWord) {
+    let firstArray = convertArrayToString(sortArray(convertStringToArray(firstWord)));
+    let secondArray = convertArrayToString(sortArray(convertStringToArray(secondWord)));
+    
+    function convertStringToArray(word){
+        let array = [];
+        for(let i = 0; i < word.length; i++){
+            array.push(word[i]);
+        }
+        return array;
+    }
+
+    function sortArray (array) {
+        for (let n = 0; n < array.length; n++) {
+            for (let i = 0; i < array.length - 1 - n; i++) {
+                if (array[i] > array[i + 1]) {
+                    const temporary = array[i];
+                    array[i] = array[i + 1];
+                    array[i + 1] = temporary;
+                }
+            }
+        }
+        return array;
+    }
+
+    function convertArrayToString(array){
+        let word = '';
+        for(let i = 0; i < array.length; i++){
+            word += array[i];
+        }
+        return word;
+    }
+
+    return firstArray === secondArray;
+}
+console.log(checkIsAnagram("kamuw", "muwka"));
 
 // // 3
 // const countingNumber = function(givenNumber){
@@ -408,7 +445,7 @@
 //     } else if (condition === "mean"){
 //         return sum/count;
 //     } else{
-//         return "Задайте третим аргументом одно из значений(zero, sum or mean)";
+//         return "Задайте третьим аргументом одно из значений(zero, sum or mean)";
 //     }
 // }
 
@@ -472,11 +509,8 @@
 // };
 
 // // 20
-// function checkComparisonZero(number){
-//     if((number & (1 << 63))){
-//         return false
-//     }
-//     return  true;
+// function checkIsPositiveZero(number){
+//     return ((number & (1 << 63))===0)
 // }
 
 // function getSumBits(number){

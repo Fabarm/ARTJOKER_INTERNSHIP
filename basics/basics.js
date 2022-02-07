@@ -413,7 +413,7 @@
 // }
 
 // // 18
-// let fibonacci = {
+// const fibonacci = {
 //     [Symbol.iterator]: function* (limit){
 //         limit = limit || 5;
 //         let prePrevValue  = 0;
@@ -428,76 +428,55 @@
 //     }
 // }
 
+// const fibonacciRecurse = function (number) {
+//     if(number <= 1){
+//       return number;
+//     }else{
+//       return fibonacciRecurse(number - 1) + fibonacciRecurse(number - 2);
+//     }
+// }
+
+// const fibonacciRecurse = (function () {
+//     let memo = {};
+
+//     return function fib(number){
+        
+//         if(number <= 1){
+//         return number;
+//         }
+//         if(memo[number] === undefined) {
+//             memo[number] = fib(number - 1);
+//         }
+//         return fib(number - 1) + fib(number - 2);
+        
+//     }
+// })();;
+
+
 // // 19
 // let trafficLights = {
 //     [Symbol.iterator]: function* (){
 //         let lights = ['Красный', 'Желтый', "Зеленый"];
 //         let counter = 0;
-//         for(let i = 0; i < 15; i++) {
-//             if(counter === 3){
-//                 counter = 0;
-//             }
+//         for(let i = 0; i < 16; i++) {            
 //             yield lights[counter++];
+//             if(counter === lights.length){
+//                 for(let j = 1; j > 0; j--){
+//                     yield lights[j];
+//                 }
+//                 counter = 0
+//             }
+            
 //         }
 //     }
-// }
-//
-// 
-// function fibonacciArrayRecurse(number, index, fibonacciArray) {
-//     index = index || 1;
-//     fibonacciArray = fibonacciArray || [0, 1].splice(0, number);
-//
-//     if (++index < number) {
-//         fibonacciArray.push(fibonacciArray[index - 1] + fibonacciArray[index - 2]);
-//         fibonacciArrayRecurse(number, index, fibonacciArray);
-//     }
-//
-//     return fibonacciArray;
-// }
-//
-//
-// const fibonacciArrayRecursionMemo = (function () {
-//     const memo = {};
-//
-//     return function pushFibonacci(number, arrayFibonacci) {
-//         arrayFibonacci = arrayFibonacci || [];
-//
-//         function getFibonacciNumber(number) {
-//             let result = 0;
-//
-//             if (memo[number] !== undefined) {
-//                 result = memo[number];
-//                 return result;
-//             }
-//
-//             if (number <= 1) {
-//                 memo[number] = number;
-//                 result = number;
-//                 return result;
-//             } else {
-//                 result +=
-//                     getFibonacciNumber(number - 1) + getFibonacciNumber(number - 2);
-//                 memo[number] = result;
-//             }
-//             return result;
-//         }
-//
-//         if (--number >= 0) {
-//             arrayFibonacci.unshift(getFibonacciNumber(number));
-//             pushFibonacci(number, arrayFibonacci);
-//         }
-//
-//         return arrayFibonacci;
-//     };
-// })();
+// };
 
 // // 20
-// function comparisonZero(number){
-//     if(Math.sqrt(number**2) === number){
-//         return "Больше 0";
-//     }else{
-//         return "Меньше 0";
+// function checkComparisonZero(number){
+//     if((number & (1 << 63))){
+//         return false
 //     }
+//     return  true;
 // }
 
 // function getSumBits(number){
@@ -520,17 +499,8 @@
 //     return obj;
 // }
 
-// const bitWiseOperatorFirstVariant =  (num) =>  -num - 1 ;
+// const bitWiseOperatorFirstVariant =  (num) =>  -num - 1;
 
-// function bitWiseOperatorSecondVariant (num){
-//     if(num < 0){
-//         return Math.abs(num)-1;
-//     }
-//     if(num > 0){
-//         return num - (num*2 + 1);
-//     }
-//     return -1;
+// function bitWiseOperatorSecondVariant(number){
+    
 // }
-
-
-// 1+ 2+ 3+ 4+ 5+ 6+ 7+ 8+ 9+ 10+ 11+ 12+ 13+++ 14+ 15+ 16+ 17+ 18+-- 19+ 20+++

@@ -1,5 +1,5 @@
 "use strict"
-
+// Собственная реализация split, sort и join
 String.prototype.MySplit = function(){
     let array = [];
     for(let i = 0; i < this.length; i++){
@@ -48,15 +48,19 @@ String.prototype.mySplit = function (separator){
 // 1
 function checkIsAnagram(firstWord, secondWord) {
     if(typeof(firstWord) !== 'string' && typeof(secondWord) !== 'string'){
-        throw new Error("Data type is not a string")
+        throw new Error("Data type is not a string");
     }
-    return firstWord.MySplit().SortArray().MyJoin() === secondWord.MySplit().SortArray().MyJoin();   
+    return firstWord.MySplit().SortArray().MyJoin() 
+           === 
+           secondWord.MySplit().SortArray().MyJoin();   
 }
+
+// 2 Блок-схема находится в каталоге под названием task2.png 
 
 // 3
 const countingNumber = function(givenNumber){
     if(typeof(givenNumber) !== 'number'){
-        throw new Error("Data type is not a number")
+        throw new Error("Data type is not a number");
     }
 
     let counter = 0; 
@@ -69,10 +73,10 @@ const countingNumber = function(givenNumber){
 
 const countingNumberRecursion = function (givenNumber, counter) {
     if(typeof(givenNumber) !== 'number'){
-        throw new Error("Data type first argument is not a number")
+        throw new Error("Data type first argument is not a number");
     }
     if(counter && typeof(counter) !== 'number'){
-        throw new Error("Data type second argument is not a number")
+        throw new Error("Data type second argument is not a number");
     }
 
     counter = counter || 0;
@@ -88,7 +92,7 @@ const countingNumberRecursion = function (givenNumber, counter) {
 // 4
 function checkIsPalindrome(word){
     if(typeof(word) !== 'string'){
-        throw new Error("Data type is not a string")
+        throw new Error("Data type is not a string");
     }
 
     let wordArray = word.toLowerCase().MySplit();
@@ -104,7 +108,7 @@ function checkIsPalindrome(word){
 // 5
 function calcWords(sentence){
     if(typeof(sentence) !== 'string'){
-        throw new Error("Data type is not a string")
+        throw new Error("Data type is not a string");
     }
 
     let arrayWords = sentence.toLowerCase().mySplit(' ');
@@ -122,7 +126,7 @@ function calcWords(sentence){
 // 6
 function entryWords(sentence){
     if(typeof(sentence) !== 'string'){
-        throw new Error("Data type is not a string")
+        throw new Error("Data type is not a string");
     }
 
     let words = {};
@@ -142,7 +146,7 @@ function entryWords(sentence){
 // 7
 function Rectangle(length, width){
     if(typeof(length) !== 'number' || typeof(width) !== 'number'){
-        throw new Error("Data type is not a number")
+        throw new Error("Data type is not a number");
     }
     
     this.square = length * width;
@@ -152,7 +156,7 @@ function Rectangle(length, width){
 
 function Triangle(sideA, sideB, sideC){
     if(typeof(sideA) !== 'number' || typeof(sideB) !== 'number' || typeof(sideC) !== 'number'){
-        throw new Error("Data type is not a number")
+        throw new Error("Data type is not a number");
     }
 
     this.square = (sideA*sideB)/2;
@@ -161,7 +165,7 @@ function Triangle(sideA, sideB, sideC){
 
 function Circle(radius){
     if(typeof(radius) !== 'number'){
-        throw new Error("Data type is not a number")
+        throw new Error("Data type is not a number");
     }
 
     this.square = Math.PI * (radius**2);
@@ -211,7 +215,7 @@ class CircleClass {
 // 8
 const factorial = function (number){
     if(typeof(number) !== 'number'){
-        throw new Error("Data type is not a number")
+        throw new Error("Data type is not a number");
     }
     let result = 1;
     for(let i = 1; i <= number; i++){
@@ -221,6 +225,9 @@ const factorial = function (number){
 }
 
 const factorialRecursion = function(number){
+    if(typeof(number) !== 'number'){
+        throw new Error("Data type is not a number");
+    }
     return number ? number * factorial(number-1) : 1;    
 }
 
@@ -298,7 +305,7 @@ function getAmountElementMatrix(matrix, callback){
 // 11
 function getBinary(denaryNumber){
     if(typeof(denaryNumber) !== 'number'){
-        throw new Error("Data type is not a number")
+        throw new Error("Data type is not a number");
     }
 
     let result = [];
@@ -311,7 +318,7 @@ function getBinary(denaryNumber){
 
 function getDenary(binaryNumber){
     if(typeof(binaryNumber) !== 'number'){
-        throw new Error("Data type is not a number")
+        throw new Error("Data type is not a number");
     }
 
     let array = [];
@@ -330,10 +337,10 @@ function getDenary(binaryNumber){
 // 13
 function getSum(min, max, callback){
     if(typeof(min) !== 'number' || typeof(max) !== 'number'){
-        throw new Error("Data type min or max is not a number")
+        throw new Error("Data type min or max is not a number");
     }
     if(typeof(callback) !== 'function'){
-        throw new Error("Data type callback is not a function")
+        throw new Error("Data type callback is not a function");
     }
 
     let count = 0;
@@ -344,13 +351,14 @@ function getSum(min, max, callback){
     }
     return count;
 }
+// Блок-схема находится в каталоге под названием task13.png 
 
 function getSumRecursion(min, max, callback){
     if(typeof(min) !== 'number' || typeof(max) !== 'number'){
-        throw new Error("Data type min or max is not a number")
+        throw new Error("Data type min or max is not a number");
     }
     if(typeof(callback) !== 'function'){
-        throw new Error("Data type callback is not a function")
+        throw new Error("Data type callback is not a function");
     }
 
     let sum = 0;
@@ -600,8 +608,9 @@ let trafficLightVariant2= {
 // 20
 function checkIsPositiveZero(number){
     if(typeof(number) !== 'number'){
-        throw new Error("Data type is not a number")
+        throw new Error("Data type is not a number");
     }
+
     return ((number & (1 << 63))===0)
 }
 
@@ -627,6 +636,4 @@ function getSumBits(number){
 
 const bitWiseOperatorFirstVariant =  (num) =>  -num - 1;
 
-function bitWiseOperatorSecondVariant(number){
-    
-}
+

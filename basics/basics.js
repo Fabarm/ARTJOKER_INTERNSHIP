@@ -47,20 +47,34 @@ String.prototype.mySplit = function (separator){
 
 // 1
 function checkIsAnagram(firstWord, secondWord) {
-    return firstWord.MySplit().SortArray().MyJoin() === secondWord.MySplit().SortArray().MyJoin();
+    if(typeof(firstWord) !== 'string' && typeof(secondWord) !== 'string'){
+        throw new Error("Data type is not a string")
+    }
+    return firstWord.MySplit().SortArray().MyJoin() === secondWord.MySplit().SortArray().MyJoin();   
 }
 
 // 3
 const countingNumber = function(givenNumber){
+    if(typeof(givenNumber) !== 'number'){
+        throw new Error("Data type is not a number")
+    }
+
     let counter = 0; 
     for(let i = 0; i = givenNumber; i++){
         givenNumber = Math.floor(givenNumber/10);
         counter++;
     }
     return counter;
-} 
+}
 
 const countingNumberRecursion = function (givenNumber, counter) {
+    if(typeof(givenNumber) !== 'number'){
+        throw new Error("Data type first argument is not a number")
+    }
+    if(counter && typeof(counter) !== 'number'){
+        throw new Error("Data type second argument is not a number")
+    }
+
     counter = counter || 0;
 
     if(givenNumber < 9){
@@ -68,11 +82,15 @@ const countingNumberRecursion = function (givenNumber, counter) {
         return counter;
     }
         
-    return countingNumber(Math.floor(givenNumber/10), ++counter);
+    return countingNumberRecursion(Math.floor(givenNumber/10), ++counter);
 }
 
 // 4
 function checkIsPalindrome(word){
+    if(typeof(word) !== 'string'){
+        throw new Error("Data type is not a string")
+    }
+
     let wordArray = word.toLowerCase().MySplit();
     let newWordArray = [];
     
@@ -85,6 +103,10 @@ function checkIsPalindrome(word){
 
 // 5
 function calcWords(sentence){
+    if(typeof(sentence) !== 'string'){
+        throw new Error("Data type is not a string")
+    }
+
     let arrayWords = sentence.toLowerCase().mySplit(' ');
     let newWords = [];
     
@@ -99,8 +121,13 @@ function calcWords(sentence){
 
 // 6
 function entryWords(sentence){
+    if(typeof(sentence) !== 'string'){
+        throw new Error("Data type is not a string")
+    }
+
     let words = {};
     let arrayWords = sentence.toLowerCase().mySplit(' ');
+
     for(let i = 0; i < arrayWords.length; i++){
         if(words[arrayWords[i]] === undefined){
         words[arrayWords[i]] = 1;
@@ -108,21 +135,35 @@ function entryWords(sentence){
             words[arrayWords[i]] += 1;
         }
     }
+
     return words;
 }
 
 // 7
 function Rectangle(length, width){
+    if(typeof(length) !== 'number' || typeof(width) !== 'number'){
+        throw new Error("Data type is not a number")
+    }
+    
     this.square = length * width;
     this.perimeter = (length + width)*2;
 }
 
+
 function Triangle(sideA, sideB, sideC){
+    if(typeof(sideA) !== 'number' || typeof(sideB) !== 'number' || typeof(sideC) !== 'number'){
+        throw new Error("Data type is not a number")
+    }
+
     this.square = (sideA*sideB)/2;
     this.perimeter = sideA + sideB + sideC;
 }
 
 function Circle(radius){
+    if(typeof(radius) !== 'number'){
+        throw new Error("Data type is not a number")
+    }
+
     this.square = Math.PI * (radius**2);
     this.perimeter = 2 * Math.PI * radius;
 }
@@ -168,16 +209,19 @@ class CircleClass {
 }
 
 // 8
-const factorial = function (num){
-    let res = 1;
-    for(let i = 1; i <= num; i++){
-        res = res * i;
+const factorial = function (number){
+    if(typeof(number) !== 'number'){
+        throw new Error("Data type is not a number")
     }
-    return res;
+    let result = 1;
+    for(let i = 1; i <= number; i++){
+        result = result * i;
+    }
+    return result;
 }
 
-const factorialRecursion = function(num){
-    return num ? num * factorial(num-1) : 1;    
+const factorialRecursion = function(number){
+    return number ? number * factorial(number-1) : 1;    
 }
 
 const factorialMemo = (function () {
@@ -197,13 +241,13 @@ const factorialMemo = (function () {
 
 // 9
 function getSumElementArray(array, callback){
-    let count = 0;
+    let counter = 0;
     for(let i = 0; i < array.length; i++){        
         if(callback(array[i])){
-            count += array[i];
+            counter += array[i];
         }
     }
-    return count;
+    return counter;
 }
 
 function getSumElementRecursion(array, callback, index){
@@ -253,6 +297,10 @@ function getAmountElementMatrix(matrix, callback){
 
 // 11
 function getBinary(denaryNumber){
+    if(typeof(denaryNumber) !== 'number'){
+        throw new Error("Data type is not a number")
+    }
+
     let result = [];
     while(denaryNumber > 0){
         result.unshift(denaryNumber % 2);
@@ -262,6 +310,10 @@ function getBinary(denaryNumber){
 }
 
 function getDenary(binaryNumber){
+    if(typeof(binaryNumber) !== 'number'){
+        throw new Error("Data type is not a number")
+    }
+
     let array = [];
     let result = 0;
     for(let i = 0; i = binaryNumber; i++){
@@ -277,6 +329,13 @@ function getDenary(binaryNumber){
 
 // 13
 function getSum(min, max, callback){
+    if(typeof(min) !== 'number' || typeof(max) !== 'number'){
+        throw new Error("Data type min or max is not a number")
+    }
+    if(typeof(callback) !== 'function'){
+        throw new Error("Data type callback is not a function")
+    }
+
     let count = 0;
     for(let i = min; i <= max; i++){        
         if(callback(i)){
@@ -287,6 +346,13 @@ function getSum(min, max, callback){
 }
 
 function getSumRecursion(min, max, callback){
+    if(typeof(min) !== 'number' || typeof(max) !== 'number'){
+        throw new Error("Data type min or max is not a number")
+    }
+    if(typeof(callback) !== 'function'){
+        throw new Error("Data type callback is not a function")
+    }
+
     let sum = 0;
 
     if(callback(min)){
@@ -302,6 +368,12 @@ function getSumRecursion(min, max, callback){
 
 // 14
 function averageElementsArray(array, callback){
+    if(Array.isArray(array) === false){
+        throw new Error("Data type array is not a array");
+    }
+    if(typeof(callback) !== 'function'){
+        throw new Error("Data type callback is not a function");
+    }
     let result = 0;
     let counter = 0;
 
@@ -311,7 +383,13 @@ function averageElementsArray(array, callback){
             counter++;
         }
     }
-    return result/counter;
+    
+    if(result === 0 || counter === 0){
+        throw new Error("Data entered incorrectly");
+    }
+
+    return result/counter;   
+    
 }
 
 function averageElementsMatrix(matrix, callback){
@@ -504,8 +582,26 @@ let trafficLights = {
     }
 };
 
+let trafficLightVariant2= {
+    [Symbol.iterator]: function* (){
+        let lights = ['Красный', 'Желтый', "Зеленый", 'Желтый'];
+        let counter = 0;
+        for(let i = 0; i < 16; i++) {            
+            yield lights[counter++];
+            if(counter === 4){
+                counter = 0
+                yield lights[counter++];
+            }
+            
+        }
+    }
+};
+
 // 20
 function checkIsPositiveZero(number){
+    if(typeof(number) !== 'number'){
+        throw new Error("Data type is not a number")
+    }
     return ((number & (1 << 63))===0)
 }
 

@@ -1,11 +1,22 @@
 "use strict"
 // Собственная реализация split, sort и join
-String.prototype.MySplit = function(){
-    let array = [];
-    for(let i = 0; i < this.length; i++){
-        array.push(this[i]);
+String.prototype.MySplit = function (separator) {
+    let newArr = [];
+    let word = '';
+    for (let i = 0; i < this.length; i++) {
+        if (separator === '') {
+            newArr.push(this[i]);
+        } else {
+            if (this[i] !== separator) {
+                word = word + this[i];
+            }
+            if (this[i] === separator || i === this.length - 1) {
+                newArr.push(word);
+                word = '';
+            }
+        }
     }
-    return array;
+    return newArr;
 }
 
 Array.prototype.SortArray = function () {
@@ -29,30 +40,14 @@ Array.prototype.MyJoin = function(){
     return word;
 }
 
-String.prototype.mySplit = function (separator){
-    let newArr = [];
-    let word = '';
-    for (let i = 0; i <= this.length; i++) {
-        if(this[i] !== separator){
-        word += this[i];
-        }
-
-        if(this[i] === separator || i === this.length-1) {
-            newArr.push(word);
-            word = '';
-        }
-    }
-    return newArr;
-}
-
 // 1
 function checkIsAnagram(firstWord, secondWord) {
     if(typeof(firstWord) !== 'string' && typeof(secondWord) !== 'string'){
         throw new Error("Data type is not a string");
     }
-    return firstWord.MySplit().SortArray().MyJoin() 
-           === 
-           secondWord.MySplit().SortArray().MyJoin();   
+
+    return firstWord.MySplit('').SortArray().MyJoin() 
+           === secondWord.MySplit('').SortArray().MyJoin();   
 }
 
 // 2 Блок-схема находится в каталоге под названием task2.png 
@@ -95,7 +90,7 @@ function checkIsPalindrome(word){
         throw new Error("Data type is not a string");
     }
 
-    let wordArray = word.toLowerCase().MySplit();
+    let wordArray = word.toLowerCase().MySplit('');
     let newWordArray = [];
     
     for (let i = wordArray.length - 1; i >= 0; i--){
@@ -111,7 +106,7 @@ function calcWords(sentence){
         throw new Error("Data type is not a string");
     }
 
-    let arrayWords = sentence.toLowerCase().mySplit(' ');
+    let arrayWords = sentence.toLowerCase().MySplit(' ');
     let newWords = [];
     
     for(let i = 0; i < arrayWords.length; i++){
@@ -130,7 +125,7 @@ function entryWords(sentence){
     }
 
     let words = {};
-    let arrayWords = sentence.toLowerCase().mySplit(' ');
+    let arrayWords = sentence.toLowerCase().MySplit(' ');
 
     for(let i = 0; i < arrayWords.length; i++){
         if(words[arrayWords[i]] === undefined){
@@ -218,9 +213,11 @@ const factorial = function (number){
         throw new Error("Data type is not a number");
     }
     let result = 1;
+
     for(let i = 1; i <= number; i++){
-        result = result * i;
+        result *= i;
     }
+
     return result;
 }
 
@@ -228,7 +225,8 @@ const factorialRecursion = function(number){
     if(typeof(number) !== 'number'){
         throw new Error("Data type is not a number");
     }
-    return number ? number * factorial(number-1) : 1;    
+
+    return number ? number * factorialRecursion (number-1) : 1;    
 }
 
 const factorialMemo = (function () {
@@ -248,58 +246,68 @@ const factorialMemo = (function () {
 
 // 9
 function getSumElementArray(array, callback){
-    let counter = 0;
+    let sum = 0;
+
     for(let i = 0; i < array.length; i++){        
         if(callback(array[i])){
-            counter += array[i];
+            sum += array[i];
         }
     }
-    return counter;
+
+    return sum;
 }
 
 function getSumElementRecursion(array, callback, index){
     index = index || 0;
-    let sum = null;    
+    let sum = null;
+
     sum += callback(array[index]) ? array[index] :  0;
     if(array.length <= index) {
         return sum ;
     }
-    return sum + getSumElement(array, callback, ++index);
+
+    return sum + getSumElementRecursion(array, callback, ++index);
 }
 
 function getSumElemenMatrix(matrix, callback){
-    let counter = 0;
+    let sum = 0;
+
     for(let i = 0; i < matrix.length; i++){
         for(let j = 0; j < matrix[i].length; j++){
             if(callback(matrix[i][j])){
-                counter += matrix[i][j];
+                sum += matrix[i][j];
             }
         }
     }
-    return counter;
+
+    return sum;
 }
 
 // 10
 function getAmountElementArray(array, callback){
-    let counter = 0;
+    let amount = 0;
+
     for(let i = 0; i < array.length; i++){        
         if(callback(array[i])){
-            counter++;
+            amount++;
         }
     }
-    return counter;
+
+    return amount;
 }
 
 function getAmountElementMatrix(matrix, callback){
-    let counter = 0;
+    let amount = 0;
+
     for(let i = 0; i < matrix.length; i++){
         for(let j = 0; j < matrix[i].length; j++){
             if(callback(matrix[i][j])){
-                counter++;
+                amount++;
             }
         }
     }
-    return counter;
+
+    return amount;
 }
 
 // 11
@@ -313,7 +321,8 @@ function getBinary(denaryNumber){
         result.unshift(denaryNumber % 2);
         denaryNumber = Math.floor(denaryNumber / 2);
     }
-    return Number(result.join(''));
+
+    return Number(result.MyJoin());
 }
 
 function getDenary(binaryNumber){
@@ -331,6 +340,7 @@ function getDenary(binaryNumber){
     for(let j = 0; j < array.length; j++){
         result += array[j] * 2**j;
     }
+
     return result;
 }
 
@@ -343,13 +353,15 @@ function getSum(min, max, callback){
         throw new Error("Data type callback is not a function");
     }
 
-    let count = 0;
+    let sum = 0;
+
     for(let i = min; i <= max; i++){        
         if(callback(i)){
-            count++;
+            sum += i;
         }
     }
-    return count;
+
+    return sum;
 }
 // Блок-схема находится в каталоге под названием task13.png 
 
@@ -396,8 +408,7 @@ function averageElementsArray(array, callback){
         throw new Error("Data entered incorrectly");
     }
 
-    return result/counter;   
-    
+    return result/counter;
 }
 
 function averageElementsMatrix(matrix, callback){
@@ -412,6 +423,7 @@ function averageElementsMatrix(matrix, callback){
             }
         }
     }
+
     return result/counter;
 }
 
@@ -419,41 +431,44 @@ function averageElementsMatrix(matrix, callback){
 function transformMatrix(matrix) {
     for (let i = 0; i < matrix.length; i++) {
         for (let j = 0; j < i; j++) {
-            let  somebody = matrix[i][j];
+            let  temp = matrix[i][j];
             matrix[i][j] = matrix[j][i];
-            matrix[j][i] =  somebody;
+            matrix[j][i] =  temp;
         }
     }
+
     return matrix;
 }
 
-function SumMatrix(firstMatrix,secondMatrix){
+function sumMatrix(firstMatrix, secondMatrix){
     let result = [];
     for (let i = 0; i < firstMatrix.length; i++){
         result[i] = [];
-        for (let j = 0; j < firstMatrix[0].length; j++){
-           result[i][j] = firstMatrix[i][j]+secondMatrix[i][j];
+        for (let j = 0; j < firstMatrix[i].length; j++){
+           result[i][j] = firstMatrix[i][j] + secondMatrix[i][j];
         }
     }
+
     return result;
 }
 
 // 16
 function removeRow(matrix){
-    let index = [];
+    let result = [];
+    let flag = true
     for(let i = 0; i < matrix.length; i++){
         for (let j = 0; j < matrix[i].length; j++){
             if(matrix[i][j] === 0){
-                index.push(matrix.indexOf(matrix[i]));
+                flag = false;               
+                break;
             }
+            flag = true;            
         }
-    }
-    let counter = 0;
-    for (let i = 0; i < index.length; i++){
-        matrix.splice(index[i] - counter, 1);
-        counter++;
-    }
-    return matrix;
+        if(flag === true){
+            result.push(matrix[i]);
+        }
+    }    
+    return result;
 }
 
 function removeColumn(matrix){
@@ -477,6 +492,13 @@ function removeColumn(matrix){
 
     return matrix;
 }
+// console.log(removeColumn([
+//     [1,2,3,5,9,4],
+//     [4,5,6,5,9,4],
+//     [1,5,0,5,8,4],
+//     [7,8,9,5,9,0],
+//     [1,0,3,5,9,4],
+// ]));
 
 // 17
 function getTopDiagonal(matrix, direction, condition){
@@ -533,14 +555,15 @@ function getTopDiagonal(matrix, direction, condition){
 
 // 18
 const fibonacci = {
-    [Symbol.iterator]: function* (limit){
-        limit = limit || 5;
+    amountNumbers: 10,
+    [Symbol.iterator]: function* (){
+        
         let prePrevValue  = 0;
         let prevValue  = 1;
 
-        for(let i = 1; i <= limit; i++){        
-            let result = prePrevValue  + prevValue;
-                [prePrevValue, prevValue ]=[prevValue, result];
+        for(let i = 0; i <= this.amountNumbers; i++){        
+            let result = prePrevValue + prevValue;
+            [prePrevValue, prevValue] = [prevValue, result];
 
             yield result;
         }
@@ -548,59 +571,43 @@ const fibonacci = {
 }
 
 const fibonacciRecurse = function (number) {
+    if(typeof(number) !== 'number'){
+        throw new Error("Data type is not a number");
+    }
+
     if(number <= 1){
       return number;
-    }else{
-      return fibonacciRecurse(number - 1) + fibonacciRecurse(number - 2);
     }
+
+    return fibonacciRecurse(number - 1) + fibonacciRecurse(number - 2);    
 }
 
 const fibonacciRecurseMemo = (function () {
     let memo = {};
 
-    return function fib(number){
-        
+    return function fibonacci(number){        
         if(number <= 1){
-        return number;
+            return number;
         }
         if(memo[number] === undefined) {
-            memo[number] = fib(number - 1);
+            memo[number] = fibonacci(number - 1);
         }
-        return fib(number - 1) + fib(number - 2);
-        
+
+        return fibonacci(number - 1) + fibonacci(number - 2);        
     }
-})();;
+})();
 
 
 // 19
-let trafficLights = {
-    [Symbol.iterator]: function* (){
-        let lights = ['Красный', 'Желтый', "Зеленый"];
-        let counter = 0;
-        for(let i = 0; i < 16; i++) {            
-            yield lights[counter++];
-            if(counter === lights.length){
-                for(let j = 1; j > 0; j--){
-                    yield lights[j];
-                }
-                counter = 0
-            }
-            
-        }
-    }
-};
-
-let trafficLightVariant2= {
-    [Symbol.iterator]: function* (){
-        let lights = ['Красный', 'Желтый', "Зеленый", 'Желтый'];
-        let counter = 0;
-        for(let i = 0; i < 16; i++) {            
-            yield lights[counter++];
-            if(counter === 4){
-                counter = 0
-                yield lights[counter++];
-            }
-            
+let trafficLights1 = {
+    amountCycles: 10,
+    [Symbol.iterator]:function* (){
+        let lights = ['Красный', 'Желтый', 'Зеленый', 'Желтый'];
+        for(let i = 0; i < this.amountCycles; i++){            
+            yield lights[0];
+            yield lights[1];
+            yield lights[2];
+            yield lights[3];
         }
     }
 };
@@ -611,10 +618,10 @@ function checkIsPositiveZero(number){
         throw new Error("Data type is not a number");
     }
 
-    return ((number & (1 << 63))===0)
+    return ((number & (1 << 63))===0);
 }
 
-function getSumBits(number){
+function getCounterBits(number){
     let result = [];
     while(number > 0){
         result.unshift(number % 2);
@@ -626,14 +633,17 @@ function getSumBits(number){
     };
     for (let i = 0; i < result.length; i++){
         if(result[i] === 1){
-            obj.one+=1;
+            obj.one++;
         }else{
-            obj.zero+=1;
+            obj.zero++;
         }
     }
+
     return obj;
 }
 
 const bitWiseOperatorFirstVariant =  (num) =>  -num - 1;
 
+
+// 14-1 16-2 17 20-2 20-3
 

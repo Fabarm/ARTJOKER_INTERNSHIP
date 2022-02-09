@@ -8,7 +8,7 @@ String.prototype.MySplit = function (separator) {
             newArr.push(this[i]);
         } else {
             if (this[i] !== separator) {
-                word = word + this[i];
+                word += this[i];
             }
             if (this[i] === separator || i === this.length - 1) {
                 newArr.push(word);
@@ -64,7 +64,7 @@ const countingNumber = function(givenNumber){
         counter++;
     }
     return counter;
-}
+};
 
 const countingNumberRecursion = function (givenNumber, counter) {
     if(typeof(givenNumber) !== 'number'){
@@ -82,7 +82,7 @@ const countingNumberRecursion = function (givenNumber, counter) {
     }
         
     return countingNumberRecursion(Math.floor(givenNumber/10), ++counter);
-}
+};
 
 // 4
 function checkIsPalindrome(word){
@@ -219,7 +219,7 @@ const factorial = function (number){
     }
 
     return result;
-}
+};
 
 const factorialRecursion = function(number){
     if(typeof(number) !== 'number'){
@@ -227,7 +227,7 @@ const factorialRecursion = function(number){
     }
 
     return number ? number * factorialRecursion (number-1) : 1;    
-}
+};
 
 const factorialMemo = (function () {
     let memo = {};
@@ -394,37 +394,47 @@ function averageElementsArray(array, callback){
     if(typeof(callback) !== 'function'){
         throw new Error("Data type callback is not a function");
     }
-    let result = 0;
+
+    let sum = 0;
     let counter = 0;
 
     for(let i = 0; i < array.length; i++){
         if(callback(array[i])){
-            result += array[i];
-            counter++;
+            sum += array[i];
+                       
+        }
+        if(array[i] !== 0){
+            counter++; 
         }
     }
-    
-    if(result === 0 || counter === 0){
-        throw new Error("Data entered incorrectly");
+
+    if(Number.isNaN(sum/counter)){
+        return 0
     }
 
-    return result/counter;
+    return sum/counter;
 }
 
 function averageElementsMatrix(matrix, callback){
-    let result = 0;
+    let sum = 0;
     let counter = 0;
     
     for(let i = 0; i < matrix.length; i++){
         for(let j = 0; j < matrix[i].length; j++){
             if(callback(matrix[i][j])){
-                result += matrix[i][j];
-                counter++;
+                sum += matrix[i][j];
             }
+            if(matrix[i][j] !== 0){
+                counter++; 
+            }   
         }
     }
 
-    return result/counter;
+    if(Number.isNaN(sum/counter)){
+        return 0
+    }
+
+    return sum/counter;
 }
 
 // 15
@@ -471,87 +481,27 @@ function removeRow(matrix){
     return result;
 }
 
-function removeColumn(matrix){
-    let index = [];
-    for(let i = 0; i < matrix.length; i++){
-        for (let j = 0; j < matrix[i].length; j++){
-            if(matrix[i][j] === 0){
-                index.push(matrix[i].indexOf(matrix[i][j]));
+
+function removeColumn(matrix) {
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[i].length; j++) {
+            if ((matrix[i][j])===0) {
+                let index = matrix[i].indexOf(matrix[i][j]);
+
+                for (let k = 0; k < matrix.length; k++) {
+                    matrix[k].splice(index, 1);
+                }
             }
         }
-    }
-
-    for (let i = 0; i < matrix.length; i++){
-        let counter = 0;
-        for(let j = 0; j < index.length; j++) {
-            matrix[i].splice(index[j + counter], 1);
-            counter++;
-        }
-
     }
 
     return matrix;
 }
-// console.log(removeColumn([
-//     [1,2,3,5,9,4],
-//     [4,5,6,5,9,4],
-//     [1,5,0,5,8,4],
-//     [7,8,9,5,9,0],
-//     [1,0,3,5,9,4],
-// ]));
 
 // 17
-function getTopDiagonal(matrix, direction, condition){
-    let zero = 0;
-    let sum = 0;
-    let count  = 0;
-    
-    if(direction === "topDiagonal"){
-        for(let i = 0; i < matrix.length; i++){
-            for(let j = i + 1; j < matrix[i].length; j++){        
-                if(matrix[i][j] === 0){
-                    zero++;
-                }
-                sum += matrix[i][j];
-                count++;
-            }
-        }
-    }
 
-    if(direction === "bottomDiagonal"){
-        for(let i = 1; i < matrix.length; i++){
-            for(let j = 0; j < i; j++){        
-                if(matrix[i][j] === 0){
-                    zero++;
-                }
-                sum += matrix[i][j];
-                count++;
-            }
-        }
-    }
 
-    if(direction === "diagonal"){
-        for(let i = 0; i < matrix.length; i++){
-            for(let j = i; j < i + 1; j++){
-                if(matrix[i][j] === 0){
-                    zero++;
-                }
-                sum += matrix[i][j];
-                count++;
-            }
-        }
-    }
 
-    if(condition === "zero"){
-        return zero;
-    } else if (condition === "sum"){
-        return sum;
-    } else if (condition === "mean"){
-        return sum/count;
-    } else{
-        return "Задайте третьим аргументом одно из значений(zero, sum or mean)";
-    }
-}
 
 // 18
 const fibonacci = {
@@ -568,7 +518,7 @@ const fibonacci = {
             yield result;
         }
     }
-}
+};
 
 const fibonacciRecurse = function (number) {
     if(typeof(number) !== 'number'){
@@ -580,7 +530,7 @@ const fibonacciRecurse = function (number) {
     }
 
     return fibonacciRecurse(number - 1) + fibonacciRecurse(number - 2);    
-}
+};
 
 const fibonacciRecurseMemo = (function () {
     let memo = {};
@@ -597,17 +547,15 @@ const fibonacciRecurseMemo = (function () {
     }
 })();
 
-
 // 19
 let trafficLights1 = {
     amountCycles: 10,
     [Symbol.iterator]:function* (){
-        let lights = ['Красный', 'Желтый', 'Зеленый', 'Желтый'];
         for(let i = 0; i < this.amountCycles; i++){            
-            yield lights[0];
-            yield lights[1];
-            yield lights[2];
-            yield lights[3];
+            yield 'Красный';
+            yield 'Желтый';
+            yield 'Зеленый';
+            yield 'Желтый';
         }
     }
 };
@@ -617,33 +565,33 @@ function checkIsPositiveZero(number){
     if(typeof(number) !== 'number'){
         throw new Error("Data type is not a number");
     }
-
     return ((number & (1 << 63))===0);
 }
 
-function getCounterBits(number){
-    let result = [];
-    while(number > 0){
-        result.unshift(number % 2);
-        number = Math.floor(number / 2);
+function getCounterBits(number) {
+    if(typeof(number) !== 'number'){
+        throw new Error("Data type is not a number");
     }
-    let obj = {
+    const counterObject = {
+        zero: 0,
         one: 0,
-        zero: 0
     };
-    for (let i = 0; i < result.length; i++){
-        if(result[i] === 1){
-            obj.one++;
+    for (let i = 0; i < 32; i++) {
+        if((number & 1 << i) === 1 << i) {
+            counterObject.one++;
         }else{
-            obj.zero++;
+            counterObject.zero++;
         }
     }
 
-    return obj;
+    return counterObject;
 }
 
-const bitWiseOperatorFirstVariant =  (num) =>  -num - 1;
+const bitWiseNotFirstVariant =  (num) =>  -num - 1;
 
-
-// 14-1 16-2 17 20-2 20-3
-
+const bitWiseNotSecondVariant =  (number) => {
+    if(typeof(number) !== 'number'){
+        throw new Error("Data type is not a number");
+    }
+    return number ^ -1;
+};

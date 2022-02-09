@@ -20,12 +20,12 @@ String.prototype.MySplit = function (separator) {
 }
 
 Array.prototype.SortArray = function () {
-    for (let n = 0; n < this.length; n++) {
-        for (let i = 0; i < this.length - 1 - n; i++) {
-            if (this[i] > this[i + 1]) {
-                const temporary = this[i];
-                this[i] = this[i + 1];
-                this[i + 1] = temporary;
+    for (let i = 0; i < this.length; i++) {
+        for (let j = 0; j < this.length - 1 - i; j++) {
+            if (this[j] > this[j + 1]) {
+                const temp = this[j];
+                this[j] = this[j + 1];
+                this[j + 1] = temp;
             }
         }
     }
@@ -589,9 +589,3 @@ function getCounterBits(number) {
 
 const bitWiseNotFirstVariant =  (num) =>  -num - 1;
 
-const bitWiseNotSecondVariant =  (number) => {
-    if(typeof(number) !== 'number'){
-        throw new Error("Data type is not a number");
-    }
-    return number ^ -1;
-};

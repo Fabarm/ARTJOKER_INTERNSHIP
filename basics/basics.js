@@ -499,9 +499,43 @@ function removeColumn(matrix) {
 }
 
 // 17
-
-
-
+function getTopDiagonal(matrix, direction, condition){
+    let zero = 0;
+    let sum = 0;
+    let count  = 0;
+    
+    
+    for(let i = 0; i < matrix.length; i++){
+        if(direction === "topDiagonal"){
+            for(let j = i + 1; j < matrix[i].length; j++){        
+                if(matrix[i][j] === 0){
+                    zero++;
+                }
+                sum += matrix[i][j];
+                count++;
+            }
+        }
+        if(direction === "bottomDiagonal"){        
+            for(let j = 0; j < i; j++){        
+                if(matrix[i][j] === 0){
+                    zero++;
+                }
+                sum += matrix[i][j];
+                count++;
+            }            
+        }
+        if(direction === "diagonal"){        
+            for(let j = i; j < i + 1; j++){
+                if(matrix[i][j] === 0){
+                    zero++;
+                }
+                sum += matrix[i][j];
+                count++;
+            }        
+        }
+    }
+    return condition === "zero" ? zero : condition === "sum" ? sum : sum/count;
+}
 
 // 18
 const fibonacci = {
@@ -532,22 +566,22 @@ const fibonacciRecurse = function (number) {
     return fibonacciRecurse(number - 1) + fibonacciRecurse(number - 2);    
 };
 
-const setMemoszation = (func) => {
+const Memoszation = (func) => {
 	const cache = {};
 	return (number) => {
 		if (number in cache) {
 			return cache[number];
 		};
-		cache[number] = func(number)
-		return cache[number]
+		cache[number] = func(number);
+		return cache[number];
 	};
 };
 
-const getMemoizationFibonacci = setMemoszation((number) => {
+const getMemoizationFibonacci = Memoszation((number) => {
 	if (number < 2) {
 		return number;
 	};
-    console.log('recurs');
+    
 	return (getMemoizationFibonacci(number - 1) + getMemoizationFibonacci(number - 2));
 });
 
@@ -593,3 +627,4 @@ function getCounterBits(number) {
 
 const bitWiseNotFirstVariant =  (num) =>  -num - 1;
 
+const bitWiseNotSecondVariant =  (num) =>  num ^ - 1;

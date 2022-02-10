@@ -518,6 +518,57 @@ function removeColumn(matrix) {
 // 17
 
 
+function diagonal(matrix, callback){
+    let zero = 0;
+    let sum = 0;
+    let count  = 0;    
+    
+    for(let i = 0; i < matrix.length; i++){
+        for(let j = i + 1; j < matrix[i].length; j++){        
+            if(matrix[i][j] === 0){
+                zero++;
+            }
+            sum += matrix[i][j];
+            count++;
+        }
+    }
+    
+    // if(direction === "bottomDiagonal"){
+    //     for(let i = 1; i < matrix.length; i++){
+    //         for(let j = 0; j < i; j++){        
+    //             if(matrix[i][j] === 0){
+    //                 zero++;
+    //             }
+    //             sum += matrix[i][j];
+    //             count++;
+    //         }
+    //     }
+    // }
+    // if(direction === "diagonal"){
+    //     for(let i = 0; i < matrix.length; i++){
+    //         for(let j = i; j < i + 1; j++){
+    //             if(matrix[i][j] === 0){
+    //                 zero++;
+    //             }
+    //             sum += matrix[i][j];
+    //             count++;
+    //         }
+    //     }
+    // }
+    console.log(zero);
+    console.log(sum);
+    console.log(count);
+    console.log(callback);
+        
+}
+console.log(diagonal(
+[
+    [1,2,3],
+    [2,3,4],
+    [4,5,6]
+], () => this.sum));
+
+
 // 18
 const fibonacci = {
     amountNumbers: 10,

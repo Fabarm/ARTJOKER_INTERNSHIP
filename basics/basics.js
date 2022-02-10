@@ -1,6 +1,6 @@
 "use strict"
 // Собственная реализация split, sort и join
-String.prototype.MySplit = function (separator) {
+String.prototype.mySplit = function (separator) {
     let newArr = [];
     let word = '';
     for (let i = 0; i < this.length; i++) {
@@ -19,7 +19,7 @@ String.prototype.MySplit = function (separator) {
     return newArr;
 }
 
-Array.prototype.SortArray = function () {
+Array.prototype.sortArray = function () {
     for (let i = 0; i < this.length; i++) {
         for (let j = 0; j < this.length - 1 - i; j++) {
             if (this[j] > this[j + 1]) {
@@ -32,7 +32,7 @@ Array.prototype.SortArray = function () {
     return this;
 }
 
-Array.prototype.MyJoin = function(){
+Array.prototype.myJoin = function(){
     let word = '';
     for(let i = 0; i < this.length; i++){
         word += this[i];
@@ -46,8 +46,8 @@ function checkIsAnagram(firstWord, secondWord) {
         throw new Error("Data type is not a string");
     }
 
-    return firstWord.MySplit('').SortArray().MyJoin() 
-           === secondWord.MySplit('').SortArray().MyJoin();   
+    return firstWord.mySplit('').sortArray().myJoin() 
+           === secondWord.mySplit('').sortArray().myJoin();   
 }
 
 // 2 Блок-схема находится в каталоге под названием task2.png 
@@ -90,14 +90,14 @@ function checkIsPalindrome(word){
         throw new Error("Data type is not a string");
     }
 
-    let wordArray = word.toLowerCase().MySplit('');
+    let wordArray = word.toLowerCase().mySplit('');
     let newWordArray = [];
     
     for (let i = wordArray.length - 1; i >= 0; i--){
         newWordArray.push(wordArray[i]);
     }
     
-    return  newWordArray.MyJoin() === word;
+    return  newWordArray.myJoin() === word;
 }
 
 // 5
@@ -106,7 +106,7 @@ function calcWords(sentence){
         throw new Error("Data type is not a string");
     }
 
-    let arrayWords = sentence.toLowerCase().MySplit(' ');
+    let arrayWords = sentence.toLowerCase().mySplit(' ');
     let newWords = [];
     
     for(let i = 0; i < arrayWords.length; i++){
@@ -125,13 +125,13 @@ function entryWords(sentence){
     }
 
     let words = {};
-    let arrayWords = sentence.toLowerCase().MySplit(' ');
+    let arrayWords = sentence.toLowerCase().mySplit(' ');
 
     for(let i = 0; i < arrayWords.length; i++){
-        if(words[arrayWords[i]] === undefined){
-        words[arrayWords[i]] = 1;
-        } else {
+        if(words[arrayWords[i]]){        
             words[arrayWords[i]] += 1;
+        } else {
+            words[arrayWords[i]] = 1;
         }
     }
 
@@ -143,19 +143,32 @@ function Rectangle(length, width){
     if(typeof(length) !== 'number' || typeof(width) !== 'number'){
         throw new Error("Data type is not a number");
     }
+    this.length = length;
+    this.width = width;
     
-    this.square = length * width;
-    this.perimeter = (length + width)*2;
+    this.square = function() {
+        return this.length * this.width;
+    }
+    this.perimeter = function() {
+        return this.length + this.width*2;
+    }
 }
-
 
 function Triangle(sideA, sideB, sideC){
     if(typeof(sideA) !== 'number' || typeof(sideB) !== 'number' || typeof(sideC) !== 'number'){
         throw new Error("Data type is not a number");
     }
 
-    this.square = (sideA*sideB)/2;
-    this.perimeter = sideA + sideB + sideC;
+    this.sideA = sideA;
+    this.sideB = sideB;
+    this.sideC = sideC;
+
+    this.square = function() {
+        return (this.sideA * this.sideB)/2;
+    }
+    this.perimeter = function() {
+        return this.sideA + this.sideB + this.sideC;
+    }
 }
 
 function Circle(radius){
@@ -163,8 +176,14 @@ function Circle(radius){
         throw new Error("Data type is not a number");
     }
 
-    this.square = Math.PI * (radius**2);
-    this.perimeter = 2 * Math.PI * radius;
+    this.radius = radius;
+
+    this.square = function() {
+        return Math.PI * (this.radius**2);
+    }
+    this.perimeter = function() {
+        return 2 * Math.PI * this.radius;
+    }
 }
 
 class RectangleClass {
@@ -174,10 +193,10 @@ class RectangleClass {
     }
     getPerimeter(){
         return (this.length + this.width)*2;
-    };
+    }
     getSquare(){
         return (this.length * this.width);
-    };
+    }
 }
 
 class TriangleClass {
@@ -188,30 +207,30 @@ class TriangleClass {
     }
     getPerimeter(){
         return (this.sideA + this.sideB + this.sideC);
-    };
+    }
     getSquare(){
         return (this.sideA * this.sideB)/2;
-    };
+    }
 }
 
 class CircleClass {
     constructor(radius){
         this.radius = radius;
-    }
-    
+    }    
     getPerimeter(){
         return 2 * Math.PI * this.radius;
-    };
+    }
     getSquare(){
         return Math.PI * (this.radius**2);
-    };
+    }
 }
 
 // 8
 const factorial = function (number){
-    if(typeof(number) !== 'number'){
+    if(typeof(number) !== 'number' || number < 0 ){
         throw new Error("Data type is not a number");
     }
+
     let result = 1;
 
     for(let i = 1; i <= number; i++){
@@ -222,7 +241,7 @@ const factorial = function (number){
 };
 
 const factorialRecursion = function(number){
-    if(typeof(number) !== 'number'){
+    if(typeof(number) !== 'number' || number < 0 ){
         throw new Error("Data type is not a number");
     }
 
@@ -232,6 +251,10 @@ const factorialRecursion = function(number){
 const factorialMemo = (function () {
     let memo = {};
     return function factorial(num){
+        if(typeof(num) !== 'number' || num < 0 ){
+            throw new Error("Data type is not a number");
+        }
+
         if (num === 0) {
             return 1;
         }
@@ -262,8 +285,8 @@ function getSumElementRecursion(array, callback, index){
     let sum = null;
 
     sum += callback(array[index]) ? array[index] :  0;
-    if(array.length <= index) {
-        return sum ;
+    if(array.length <= index){
+        return sum;
     }
 
     return sum + getSumElementRecursion(array, callback, ++index);
@@ -322,7 +345,7 @@ function getBinary(denaryNumber){
         denaryNumber = Math.floor(denaryNumber / 2);
     }
 
-    return Number(result.MyJoin());
+    return Number(result.myJoin());
 }
 
 function getDenary(binaryNumber){
@@ -409,7 +432,7 @@ function averageElementsArray(array, callback){
     }
 
     if(Number.isNaN(sum/counter)){
-        return 0
+        return 0;
     }
 
     return sum/counter;
@@ -431,7 +454,7 @@ function averageElementsMatrix(matrix, callback){
     }
 
     if(Number.isNaN(sum/counter)){
-        return 0
+        return 0;
     }
 
     return sum/counter;
@@ -443,12 +466,17 @@ function transformMatrix(matrix) {
         for (let j = 0; j < i; j++) {
             let  temp = matrix[i][j];
             matrix[i][j] = matrix[j][i];
-            matrix[j][i] =  temp;
+            matrix[j][i] = temp;
         }
     }
 
     return matrix;
 }
+// console.log(transformMatrix([
+//     [1,2,3],
+//     [1,2,3],
+//     [1,2,3]
+// ]));
 
 function sumMatrix(firstMatrix, secondMatrix){
     let result = [];
@@ -464,28 +492,22 @@ function sumMatrix(firstMatrix, secondMatrix){
 
 // 16
 function removeRow(matrix){
-    let result = [];
-    let flag = true
     for(let i = 0; i < matrix.length; i++){
         for (let j = 0; j < matrix[i].length; j++){
-            if(matrix[i][j] === 0){
-                flag = false;               
-                break;
-            }
-            flag = true;            
-        }
-        if(flag === true){
-            result.push(matrix[i]);
-        }
+            if(matrix[i][j] === 0){                
+                matrix.splice(i, 1);
+                j--;                              
+            }   
+        }        
     }    
-    return result;
-}
 
+    return matrix;
+}
 
 function removeColumn(matrix) {
     for (let i = 0; i < matrix.length; i++) {
         for (let j = 0; j < matrix[i].length; j++) {
-            if ((matrix[i][j])===0) {
+            if (matrix[i][j] === 0) {
                 let index = matrix[i].indexOf(matrix[i][j]);
 
                 for (let k = 0; k < matrix.length; k++) {
@@ -502,7 +524,7 @@ function removeColumn(matrix) {
 function getTopDiagonal(matrix, direction, condition){
     let zero = 0;
     let sum = 0;
-    let count  = 0;
+    let count = 0;
     
     
     for(let i = 0; i < matrix.length; i++){

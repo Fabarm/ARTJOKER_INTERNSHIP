@@ -462,21 +462,16 @@ function averageElementsMatrix(matrix, callback){
 
 // 15
 function transformMatrix(matrix) {
+    let newMatrix = [];
     for (let i = 0; i < matrix.length; i++) {
-        for (let j = 0; j < i; j++) {
-            let  temp = matrix[i][j];
-            matrix[i][j] = matrix[j][i];
-            matrix[j][i] = temp;
+        newMatrix[i] = [];
+        for (let j = 0; j < matrix[i].length; j++) {
+            newMatrix[i][j] = matrix[j][i];
         }
     }
 
-    return matrix;
+    return newMatrix;
 }
-// console.log(transformMatrix([
-//     [1,2,3],
-//     [1,2,3],
-//     [1,2,3]
-// ]));
 
 function sumMatrix(firstMatrix, secondMatrix){
     let result = [];
@@ -521,43 +516,7 @@ function removeColumn(matrix) {
 }
 
 // 17
-function getTopDiagonal(matrix, direction, condition){
-    let zero = 0;
-    let sum = 0;
-    let count = 0;
-    
-    
-    for(let i = 0; i < matrix.length; i++){
-        if(direction === "topDiagonal"){
-            for(let j = i + 1; j < matrix[i].length; j++){        
-                if(matrix[i][j] === 0){
-                    zero++;
-                }
-                sum += matrix[i][j];
-                count++;
-            }
-        }
-        if(direction === "bottomDiagonal"){        
-            for(let j = 0; j < i; j++){        
-                if(matrix[i][j] === 0){
-                    zero++;
-                }
-                sum += matrix[i][j];
-                count++;
-            }            
-        }
-        if(direction === "diagonal"){        
-            for(let j = i; j < i + 1; j++){
-                if(matrix[i][j] === 0){
-                    zero++;
-                }
-                sum += matrix[i][j];
-                count++;
-            }        
-        }
-    }
-    return condition === "zero" ? zero : condition === "sum" ? sum : sum/count;
-}
+
 
 // 18
 const fibonacci = {

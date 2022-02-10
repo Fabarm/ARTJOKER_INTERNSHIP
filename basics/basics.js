@@ -481,7 +481,6 @@ function removeRow(matrix){
     return result;
 }
 
-
 function removeColumn(matrix) {
     for (let i = 0; i < matrix.length; i++) {
         for (let j = 0; j < matrix[i].length; j++) {
@@ -565,7 +564,7 @@ function checkIsPositiveZero(number){
     if(typeof(number) !== 'number'){
         throw new Error("Data type is not a number");
     }
-    return ((number & (1 << 63))===0);
+    return ((number & (1 << 31)) === 0);
 }
 
 function getCounterBits(number) {
@@ -589,3 +588,16 @@ function getCounterBits(number) {
 
 const bitWiseNotFirstVariant =  (num) =>  -num - 1;
 
+function f(number) {
+    if(typeof(number) !== 'number'){
+        throw new Error("Data type is not a number");
+    }
+
+    let a = 0
+    for (let i = 0; i < 31; i++) {
+        
+    }
+
+    console.log(a);
+}
+console.log(f(10));

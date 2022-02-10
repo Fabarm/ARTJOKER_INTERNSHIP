@@ -292,7 +292,7 @@ function getSumElementRecursion(array, callback, index){
     return sum + getSumElementRecursion(array, callback, ++index);
 }
 
-function getSumElemenMatrix(matrix, callback){
+function getSumElementMatrix(matrix, callback){
     let sum = 0;
 
     for(let i = 0; i < matrix.length; i++){
@@ -516,58 +516,61 @@ function removeColumn(matrix) {
 }
 
 // 17
-
-
-function diagonal(matrix, callback){
-    let zero = 0;
-    let sum = 0;
-    let count  = 0;    
-    
+function cutTopMatrix(matrix){
+    let topMatrix = [];
     for(let i = 0; i < matrix.length; i++){
-        for(let j = i + 1; j < matrix[i].length; j++){        
-            if(matrix[i][j] === 0){
-                zero++;
-            }
-            sum += matrix[i][j];
-            count++;
+        for(let j = i + 1; j < matrix[i].length; j++) {
+            topMatrix.push(matrix[i][j]);
         }
     }
-    
-    // if(direction === "bottomDiagonal"){
-    //     for(let i = 1; i < matrix.length; i++){
-    //         for(let j = 0; j < i; j++){        
-    //             if(matrix[i][j] === 0){
-    //                 zero++;
-    //             }
-    //             sum += matrix[i][j];
-    //             count++;
-    //         }
-    //     }
-    // }
-    // if(direction === "diagonal"){
-    //     for(let i = 0; i < matrix.length; i++){
-    //         for(let j = i; j < i + 1; j++){
-    //             if(matrix[i][j] === 0){
-    //                 zero++;
-    //             }
-    //             sum += matrix[i][j];
-    //             count++;
-    //         }
-    //     }
-    // }
-    console.log(zero);
-    console.log(sum);
-    console.log(count);
-    console.log(callback);
-        
+    return topMatrix;
 }
-console.log(diagonal(
-[
-    [1,2,3],
-    [2,3,4],
-    [4,5,6]
-], () => this.sum));
 
+function cutBottomMatrix(matrix){
+    let bottomMatrix = [];
+    for(let i = 1; i < matrix.length; i++){
+        for(let j = 0; j < i; j++){
+            bottomMatrix.push(matrix[i][j]);
+        }
+    }
+    return bottomMatrix;
+}
+
+function cutDiagonalMatrix(matrix){
+    let diagonalMatrix = [];
+    for(let i = 0; i < matrix.length; i++){
+        for(let j = i; j < i + 1; j++){
+            diagonalMatrix.push(matrix[i][j]);
+        }
+    }
+    return diagonalMatrix;
+}
+
+function sumMatrixElements(matrix){
+    let sum = 0;
+    for(let i = 0; i < matrix.length; i++){
+        sum += matrix[i];
+    }
+    return sum;
+}
+
+function counterZeroElements(matrix){
+    let counter = 0;
+    for(let i = 0; i < matrix.length; i++){
+        if(matrix[i] === 0){
+            counter++;
+        }
+    }
+    return counter;
+}
+
+function averageElements(matrix){
+    let sum = 0;
+    for(let i = 0; i < matrix.length; i++){
+        sum += matrix[i];
+    }
+    return sum/matrix.length;
+}
 
 // 18
 const fibonacci = {
@@ -598,21 +601,21 @@ const fibonacciRecurse = function (number) {
     return fibonacciRecurse(number - 1) + fibonacciRecurse(number - 2);    
 };
 
-const Memoszation = (func) => {
+const Memoization = (func) => {
 	const cache = {};
 	return (number) => {
 		if (number in cache) {
 			return cache[number];
-		};
+		}
 		cache[number] = func(number);
 		return cache[number];
 	};
 };
 
-const getMemoizationFibonacci = Memoszation((number) => {
+const getMemoizationFibonacci = Memoization((number) => {
 	if (number < 2) {
 		return number;
-	};
+	}
     
 	return (getMemoizationFibonacci(number - 1) + getMemoizationFibonacci(number - 2));
 });

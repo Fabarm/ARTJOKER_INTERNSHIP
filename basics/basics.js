@@ -481,6 +481,7 @@ function removeRow(matrix){
     return result;
 }
 
+
 function removeColumn(matrix) {
     for (let i = 0; i < matrix.length; i++) {
         for (let j = 0; j < matrix[i].length; j++) {
@@ -531,20 +532,24 @@ const fibonacciRecurse = function (number) {
     return fibonacciRecurse(number - 1) + fibonacciRecurse(number - 2);    
 };
 
-const fibonacciRecurseMemo = (function () {
-    let memo = {};
+const setMemoszation = (func) => {
+	const cache = {};
+	return (number) => {
+		if (number in cache) {
+			return cache[number];
+		};
+		cache[number] = func(number)
+		return cache[number]
+	};
+};
 
-    return function fibonacci(number){        
-        if(number <= 1){
-            return number;
-        }
-        if(memo[number] === undefined) {
-            memo[number] = fibonacci(number - 1);
-        }
-
-        return fibonacci(number - 1) + fibonacci(number - 2);        
-    }
-})();
+const getMemoizationFibonacci = setMemoszation((number) => {
+	if (number < 2) {
+		return number;
+	};
+    console.log('recurs');
+	return (getMemoizationFibonacci(number - 1) + getMemoizationFibonacci(number - 2));
+});
 
 // 19
 let trafficLights1 = {
@@ -560,11 +565,11 @@ let trafficLights1 = {
 };
 
 // 20
-function checkIsPositiveZero(number){
+function checkIsPositive(number){
     if(typeof(number) !== 'number'){
         throw new Error("Data type is not a number");
     }
-    return ((number & (1 << 31)) === 0);
+    return ((number & (1 << 63))===0);
 }
 
 function getCounterBits(number) {
@@ -588,16 +593,3 @@ function getCounterBits(number) {
 
 const bitWiseNotFirstVariant =  (num) =>  -num - 1;
 
-function f(number) {
-    if(typeof(number) !== 'number'){
-        throw new Error("Data type is not a number");
-    }
-
-    let a = 0
-    for (let i = 0; i < 31; i++) {
-        
-    }
-
-    console.log(a);
-}
-console.log(f(10));

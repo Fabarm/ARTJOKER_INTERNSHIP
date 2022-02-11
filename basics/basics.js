@@ -595,30 +595,30 @@ function cutDiagonalMatrix(matrix) {
   return diagonalMatrix;
 }
 
-function sumMatrixElements(matrix) {
+function sumArrayElements(array) {
   let sum = 0;
-  for(let i = 0; i < matrix.length; i++) {
-    sum += matrix[i];
+  for(let i = 0; i < array.length; i++) {
+    sum += array[i];
   }
   return sum;
 }
 
-function counterZeroElements(matrix, desired) {
+function counterElements(array, desired) {
   let counter = 0;
-  for(let i = 0; i < matrix.length; i++) {
-    if(matrix[i] === desired) {
+  for(let i = 0; i < array.length; i++) {
+    if(array[i] === desired) {
       counter++;
     }
   }
   return counter;
 }
 
-function averageElements(matrix) {
+function averageElements(array) {
   let sum = 0;
-  for(let i = 0; i < matrix.length; i++) {
-    sum += matrix[i];
+  for(let i = 0; i < array.length; i++) {
+    sum += array[i];
   }
-  return sum / matrix.length;
+  return sum / array.length;
 }
 
 // 18
@@ -695,13 +695,15 @@ function getCounterBits(number) {
   }
 
   const counterObject = {
-    zero: 0,
     one: 0,
   };
 
   for(let i = 0; i < 32; i++) {
-    (number & (1 << i)) === 1 << i ? counterObject.one++ : counterObject.zero++;
+    if((number & (1 << i)) === 1 << i) {
+      counterObject.one++ 
+    }
   }
+  counterObject.zero = 32 - counterObject.one;
 
   return counterObject;
 }

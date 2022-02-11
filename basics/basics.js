@@ -1,16 +1,16 @@
 "use strict"
 // Собственная реализация split, sort и join
-String.prototype.mySplit = function (separator) {
+String.prototype.mySplit = function (separator){
     let newArr = [];
     let word = '';
-    for (let i = 0; i < this.length; i++) {
+    for (let i = 0; i < this.length; i++){
         if (separator === '') {
             newArr.push(this[i]);
         } else {
-            if (this[i] !== separator) {
+            if (this[i] !== separator){
                 word += this[i];
             }
-            if (this[i] === separator || i === this.length - 1) {
+            if (this[i] === separator || i === this.length - 1){
                 newArr.push(word);
                 word = '';
             }
@@ -19,7 +19,7 @@ String.prototype.mySplit = function (separator) {
     return newArr;
 }
 
-Array.prototype.sortArray = function () {
+Array.prototype.sortArray = function (){
     for (let i = 0; i < this.length; i++) {
         for (let j = 0; j < this.length - 1 - i; j++) {
             if (this[j] > this[j + 1]) {
@@ -41,7 +41,7 @@ Array.prototype.myJoin = function(){
 }
 
 // 1
-function checkIsAnagram(firstWord, secondWord) {
+function checkIsAnagram(firstWord, secondWord){
     if(typeof(firstWord) !== 'string' && typeof(secondWord) !== 'string'){
         throw new Error("Data type is not a string");
     }
@@ -150,7 +150,7 @@ function Rectangle(length, width){
         return this.length * this.width;
     }
     this.perimeter = function() {
-        return this.length + this.width*2;
+        return this.length + this.width * 2;
     }
 }
 
@@ -164,7 +164,7 @@ function Triangle(sideA, sideB, sideC){
     this.sideC = sideC;
 
     this.square = function() {
-        return (this.sideA * this.sideB)/2;
+        return (this.sideA * this.sideB) / 2;
     }
     this.perimeter = function() {
         return this.sideA + this.sideB + this.sideC;
@@ -179,7 +179,7 @@ function Circle(radius){
     this.radius = radius;
 
     this.square = function() {
-        return Math.PI * (this.radius**2);
+        return Math.PI * (this.radius ** 2);
     }
     this.perimeter = function() {
         return 2 * Math.PI * this.radius;
@@ -192,7 +192,7 @@ class RectangleClass {
         this.width = width;
     }
     getPerimeter(){
-        return (this.length + this.width)*2;
+        return (this.length + this.width) * 2;
     }
     getSquare(){
         return (this.length * this.width);
@@ -209,7 +209,7 @@ class TriangleClass {
         return (this.sideA + this.sideB + this.sideC);
     }
     getSquare(){
-        return (this.sideA * this.sideB)/2;
+        return (this.sideA * this.sideB) / 2;
     }
 }
 
@@ -221,7 +221,7 @@ class CircleClass {
         return 2 * Math.PI * this.radius;
     }
     getSquare(){
-        return Math.PI * (this.radius**2);
+        return Math.PI * (this.radius ** 2);
     }
 }
 
@@ -259,7 +259,7 @@ const factorialMemo = (function () {
             return 1;
         }
 
-        if(memo[num] === undefined) {
+        if(memo[num] === undefined){
             memo[num] = factorial(num - 1);
         }
 
@@ -499,10 +499,10 @@ function removeRow(matrix){
     return matrix;
 }
 
-function removeColumn(matrix) {
+function removeColumn(matrix){
     for (let i = 0; i < matrix.length; i++) {
         for (let j = 0; j < matrix[i].length; j++) {
-            if (matrix[i][j] === 0) {
+            if (matrix[i][j] === 0){
                 let index = matrix[i].indexOf(matrix[i][j]);
 
                 for (let k = 0; k < matrix.length; k++) {
@@ -638,7 +638,7 @@ function checkIsPositive(number){
     if(typeof(number) !== 'number'){
         throw new Error("Data type is not a number");
     }
-    return ((number & (1 << 63))===0);
+    return ((number & (1 << 63)) === 0);
 }
 
 function getCounterBits(number) {

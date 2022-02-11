@@ -677,8 +677,9 @@ const getMemoizationFibonacci = Memoization((number) => {
 		return number;
 	}
 
-	return getMemoizationFibonacci(number - 1) + getMemoizationFibonacci(number - 2);
-	
+	return (
+		getMemoizationFibonacci(number - 1) + getMemoizationFibonacci(number - 2)
+	);
 });
 
 // 19

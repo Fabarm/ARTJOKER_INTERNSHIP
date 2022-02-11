@@ -146,10 +146,10 @@ function Rectangle(length, width) {
     this.length = length;
     this.width = width;
     
-    this.square = function() {
+    Rectangle.prototype.square = function() {
         return this.length * this.width;
     };
-    this.perimeter = function() {
+    Rectangle.prototype.perimeter = function() {
         return this.length + this.width * 2;
     };
 }
@@ -163,10 +163,10 @@ function Triangle(sideA, sideB, sideC) {
     this.sideB = sideB;
     this.sideC = sideC;
 
-    this.square = function() {
+    Triangle.prototype.square = function() {
         return (this.sideA * this.sideB) / 2;
     };
-    this.perimeter = function() {
+    Triangle.prototype.perimeter = function() {
         return this.sideA + this.sideB + this.sideC;
     };
 }
@@ -178,10 +178,10 @@ function Circle(radius) {
 
     this.radius = radius;
 
-    this.square = function() {
+    Circle.prototype.square = function() {
         return Math.PI * (this.radius ** 2);
     };
-    this.perimeter = function() {
+    Circle.prototype.perimeter = function() {
         return 2 * Math.PI * this.radius;
     };
 }
@@ -612,7 +612,7 @@ const Memoization = (func) => {
 };
 
 const getMemoizationFibonacci = Memoization((number) => {
-	if (number < 2) {
+	if(number < 2) {
 		return number;
 	}
     
@@ -648,7 +648,7 @@ function getCounterBits(number) {
         zero: 0,
         one: 0,
     };
-    for (let i = 0; i < 32; i++) {
+    for(let i = 0; i < 32; i++) {
         if((number & 1 << i) === 1 << i) {
             counterObject.one++;
         } else {

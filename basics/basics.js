@@ -3,14 +3,14 @@
 String.prototype.mySplit = function (separator) {
     let newArr = [];
     let word = '';
-    for (let i = 0; i < this.length; i++) {
-        if (separator === '') {
+    for(let i = 0; i < this.length; i++) {
+        if(separator === '') {
             newArr.push(this[i]);
         } else {
-            if (this[i] !== separator) {
+            if(this[i] !== separator) {
                 word += this[i];
             }
-            if (this[i] === separator || i === this.length - 1) {
+            if(this[i] === separator || i === this.length - 1) {
                 newArr.push(word);
                 word = '';
             }
@@ -20,9 +20,9 @@ String.prototype.mySplit = function (separator) {
 }
 
 Array.prototype.sortArray = function () {
-    for (let i = 0; i < this.length; i++) {
-        for (let j = 0; j < this.length - 1 - i; j++) {
-            if (this[j] > this[j + 1]) {
+    for(let i = 0; i < this.length; i++) {
+        for(let j = 0; j < this.length - 1 - i; j++) {
+            if(this[j] > this[j + 1]) {
                 const temp = this[j];
                 this[j] = this[j + 1];
                 this[j + 1] = temp;
@@ -93,7 +93,7 @@ function checkIsPalindrome(word) {
     let wordArray = word.toLowerCase().mySplit('');
     let newWordArray = [];
     
-    for (let i = wordArray.length - 1; i >= 0; i--) {
+    for(let i = wordArray.length - 1; i >= 0; i--) {
         newWordArray.push(wordArray[i]);
     }
     
@@ -140,7 +140,7 @@ function entryWords(sentence) {
 
 // 7
 function Rectangle(length, width) {
-    if(typeof(length) !== 'number' || typeof(width) !== 'number'){
+    if(typeof(length) !== 'number' || typeof(width) !== 'number') {
         throw new Error("Data type is not a number");
     }
     this.length = length;
@@ -148,14 +148,14 @@ function Rectangle(length, width) {
     
     this.square = function() {
         return this.length * this.width;
-    }
+    };
     this.perimeter = function() {
         return this.length + this.width * 2;
-    }
+    };
 }
 
 function Triangle(sideA, sideB, sideC) {
-    if(typeof(sideA) !== 'number' || typeof(sideB) !== 'number' || typeof(sideC) !== 'number'){
+    if(typeof(sideA) !== 'number' || typeof(sideB) !== 'number' || typeof(sideC) !== 'number') {
         throw new Error("Data type is not a number");
     }
 
@@ -165,10 +165,10 @@ function Triangle(sideA, sideB, sideC) {
 
     this.square = function() {
         return (this.sideA * this.sideB) / 2;
-    }
+    };
     this.perimeter = function() {
         return this.sideA + this.sideB + this.sideC;
-    }
+    };
 }
 
 function Circle(radius) {
@@ -180,10 +180,10 @@ function Circle(radius) {
 
     this.square = function() {
         return Math.PI * (this.radius ** 2);
-    }
+    };
     this.perimeter = function() {
         return 2 * Math.PI * this.radius;
-    }
+    };
 }
 
 class RectangleClass {
@@ -255,7 +255,7 @@ const factorialMemo = (function () {
             throw new Error("Data type is not a number");
         }
 
-        if (num === 0) {
+        if(num === 0) {
             return 1;
         }
 
@@ -297,7 +297,7 @@ function getSumElementMatrix(matrix, callback) {
 
     for(let i = 0; i < matrix.length; i++) {
         for(let j = 0; j < matrix[i].length; j++) {
-            if(callback(matrix[i][j])){
+            if(callback(matrix[i][j])) {
                 sum += matrix[i][j];
             }
         }
@@ -379,7 +379,7 @@ function getSum(min, max, callback) {
     let sum = 0;
 
     for(let i = min; i <= max; i++) {        
-        if(callback(i)){
+        if(callback(i)) {
             sum += i;
         }
     }
@@ -502,7 +502,7 @@ function removeRow(matrix) {
 function removeColumn(matrix) {
     for(let i = 0; i < matrix.length; i++) {
         for(let j = 0; j < matrix[i].length; j++) {
-            if (matrix[i][j] === 0){
+            if(matrix[i][j] === 0) {
                 let index = matrix[i].indexOf(matrix[i][j]);
 
                 for(let k = 0; k < matrix.length; k++) {
@@ -529,7 +529,7 @@ function cutTopMatrix(matrix) {
 function cutBottomMatrix(matrix) {
     let bottomMatrix = [];
     for(let i = 1; i < matrix.length; i++) {
-        for(let j = 0; j < i; j++){
+        for(let j = 0; j < i; j++) {
             bottomMatrix.push(matrix[i][j]);
         }
     }
@@ -557,7 +557,7 @@ function sumMatrixElements(matrix) {
 function counterZeroElements(matrix) {
     let counter = 0;
     for(let i = 0; i < matrix.length; i++) {
-        if(matrix[i] === 0){
+        if(matrix[i] === 0) {
             counter++;
         }
     }
@@ -575,8 +575,7 @@ function averageElements(matrix) {
 // 18
 const fibonacci = {
     amountNumbers: 10,
-    [Symbol.iterator]: function* () {
-        
+    [Symbol.iterator]: function* () {        
         let prePrevValue  = 0;
         let prevValue  = 1;
 
@@ -604,7 +603,7 @@ const fibonacciRecurse = function (number) {
 const Memoization = (func) => {
 	const cache = {};
 	return (number) => {
-		if (number in cache) {
+		if(number in cache) {
 			return cache[number];
 		}
 		cache[number] = func(number);
@@ -652,7 +651,7 @@ function getCounterBits(number) {
     for (let i = 0; i < 32; i++) {
         if((number & 1 << i) === 1 << i) {
             counterObject.one++;
-        }else{
+        } else {
             counterObject.zero++;
         }
     }

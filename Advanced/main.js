@@ -1,14 +1,17 @@
-let array = [1,2,3,4,5];
+// 1
 
-Array.prototype.myForEach = function(callback) {
+// 2
+Array.prototype.myMap = function(callback){
   if(typeof callback !== "function") {
     throw new Error("Data type callback is not a function");
   }
 
-  let array = this;
-  for (let i = 0; i < array.length; i++) {
-    callback(array[i], i, array);
+  let array = [];
+
+  for(let i = 0; i < this.length; i++) {
+    array.push(callback(this[i]));
   }
+  return array;
 };
 
 Array.prototype.myFilter = function(callback) {
@@ -16,27 +19,58 @@ Array.prototype.myFilter = function(callback) {
     throw new Error("Data type callback is not a function");
   }
 
-  let array = this;
-  for(let i = 0; i < array.length; i++){
-    if(!callback(array[i])){
-      array.splice(i,1);
+  for(let i = 0; i < this.length; i++) {
+    if(!callback(this[i], i, this)) {
+      this.splice(i,1);
       i--;
     }
   }
 
-  return array;
+  return this;
 };
 
-Array.prototype.myMap = function(callback){
-  let array = [];
-  for(let i = 0; i < this.length; i++){
-    array.push(callback(this[i]));
+Array.prototype.myReduce = function(callback, defaultValue){
+  if(typeof callback !== "function") {
+    throw new Error("Data type callback is not a function");
   }
-  return array;
+
+  let result = defaultValue || 0;
+
+  for(let i = 0; i < this.length; i++) {
+    result = callback(this[i], result);
+  }
+
+  return result;
 };
 
-// let a = array.map(item => item *2)
-// let b = array.myMap(item => item *2)
-// console.log(a)
-// console.log(b)
+Array.prototype.myFind = function (callback) {
+  if(typeof callback !== "function") {
+    throw new Error("Data type callback is not a function");
+  }
+
+  for(let i = 0; i < this.length; i++) {
+    if(callback(this[i], i, this)) {
+      return this[i];
+    }
+  }
+
+  return undefined;
+};
+
+Array.prototype.myForEach = function(callback) {
+  if(typeof callback !== "function") {
+    throw new Error("Data type callback is not a function");
+  }
+
+  for(let i = 0; i < this.length; i++) {
+    callback(this[i], i, this);
+  }
+};
+
+
+
+
+
+
+
 

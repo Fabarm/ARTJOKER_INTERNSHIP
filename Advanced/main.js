@@ -1,7 +1,24 @@
 // 1
+Function.prototype.newBind = function(context, ...arguments) {
+  return function (...args) {
+    let id = Date.now();
+    context[id] = this;
+    let result = context[id](...arguments, ...args);
+    delete context[id];
+    return result;
+  }
+};
+
+Function.prototype.newCall = function(context, ...arguments) {
+  let id = Date.now();
+  context[id] = this;
+  let result = context[id](...arguments);
+  delete context[id];
+  return result;
+};
 
 // 2
-Array.prototype.myMap = function(callback){
+Array.prototype.newMap = function(callback){
   if(typeof callback !== "function") {
     throw new Error("Data type callback is not a function");
   }
@@ -14,7 +31,7 @@ Array.prototype.myMap = function(callback){
   return array;
 };
 
-Array.prototype.myFilter = function(callback) {
+Array.prototype.newFilter = function(callback) {
   if(typeof callback !== "function") {
     throw new Error("Data type callback is not a function");
   }
@@ -29,7 +46,7 @@ Array.prototype.myFilter = function(callback) {
   return this;
 };
 
-Array.prototype.myReduce = function(callback, defaultValue){
+Array.prototype.newReduce = function(callback, defaultValue){
   if(typeof callback !== "function") {
     throw new Error("Data type callback is not a function");
   }
@@ -43,7 +60,7 @@ Array.prototype.myReduce = function(callback, defaultValue){
   return result;
 };
 
-Array.prototype.myFind = function (callback) {
+Array.prototype.newFind = function (callback) {
   if(typeof callback !== "function") {
     throw new Error("Data type callback is not a function");
   }
@@ -57,7 +74,7 @@ Array.prototype.myFind = function (callback) {
   return undefined;
 };
 
-Array.prototype.myForEach = function(callback) {
+Array.prototype.newForEach = function(callback) {
   if(typeof callback !== "function") {
     throw new Error("Data type callback is not a function");
   }

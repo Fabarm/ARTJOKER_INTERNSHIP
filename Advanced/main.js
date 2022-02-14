@@ -1,18 +1,21 @@
+"use strict"
 // 1
-Function.prototype.newBind = function(context, ...arguments) {
+Function.prototype.newBind = function(context, ...rest) {
+  let myThis = this;
+
   return function (...args) {
     let id = Symbol();
-    context[id] = this;
-    let result = context[id](...arguments, ...args);
+    context[id] = myThis;
+    let result = context[id](...rest, ...args);
     delete context[id];
     return result;
   }
 };
 
-Function.prototype.newCall = function(context, ...arguments) {
+Function.prototype.newCall = function(context, ...rest) {
   let id = Symbol();
   context[id] = this;
-  let result = context[id](...arguments);
+  let result = context[id](...rest);
   delete context[id];
   return result;
 };

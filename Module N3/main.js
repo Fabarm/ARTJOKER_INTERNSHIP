@@ -1,5 +1,56 @@
 // 1
-let arr = [-5,-4,-3,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+class Node {
+  constructor(data) {
+    this.data = data;
+    this.left = null;
+    this.right = null;
+  }
+}
+
+class BinarySearchTree {
+  constructor() {
+    this.root = null;
+  }
+
+  paste(data) {
+    let newNode = new Node(data);
+
+    if (this.root === null) {
+      this.root = newNode;
+    } else {
+      this.pasteNode(this.root, newNode)
+    }
+  }
+
+  pasteNode(node, newNode) {
+    if (newNode.data < node.data) {
+      if (node.left === null) {
+        node.left = newNode;
+      } else {
+        this.pasteNode(node.left, newNode)
+      }
+    } else {
+      if (node.right === null) {
+        node.right = newNode
+      } else {
+        this.pasteNode(node.right, newNode)
+      }
+    }
+  }
+}
+
+let BST = new BinarySearchTree();
+BST.paste(5);
+BST.paste(3);
+BST.paste(6);
+BST.paste(7);
+BST.paste(2);
+BST.paste(4);
+BST.paste(8);
+console.log(BST)
+
+
+
 
 // 2
 function sortIncrease(array) {
@@ -54,3 +105,4 @@ function binarySearch(array, target) {
   }
   return -1;
 }
+

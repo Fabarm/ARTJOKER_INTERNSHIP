@@ -1,7 +1,7 @@
 // 1
 Function.prototype.newBind = function(context, ...arguments) {
   return function (...args) {
-    let id = Date.now();
+    let id = Symbol();
     context[id] = this;
     let result = context[id](...arguments, ...args);
     delete context[id];
@@ -10,7 +10,7 @@ Function.prototype.newBind = function(context, ...arguments) {
 };
 
 Function.prototype.newCall = function(context, ...arguments) {
-  let id = Date.now();
+  let id = Symbol();
   context[id] = this;
   let result = context[id](...arguments);
   delete context[id];
@@ -35,22 +35,21 @@ Array.prototype.newFilter = function(callback) {
   if(typeof callback !== "function") {
     throw new Error("Data type callback is not a function");
   }
+  let result = [];
 
   for(let i = 0; i < this.length; i++) {
-    if(!callback(this[i], i, this)) {
-      this.splice(i,1);
-      i--;
+    if(callback(this[i], i, this)) {
+      result.push(this[i]);
     }
   }
 
-  return this;
+  return result;
 };
 
 Array.prototype.newReduce = function(callback, defaultValue){
   if(typeof callback !== "function") {
     throw new Error("Data type callback is not a function");
   }
-
   let result = defaultValue || 0;
 
   for(let i = 0; i < this.length; i++) {
@@ -83,11 +82,3 @@ Array.prototype.newForEach = function(callback) {
     callback(this[i], i, this);
   }
 };
-
-
-
-
-
-
-
-

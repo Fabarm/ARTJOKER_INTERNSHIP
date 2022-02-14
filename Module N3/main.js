@@ -39,7 +39,7 @@ class BinaryTree {
   }
 
   search(node, target) {
-    if(node === null) {
+    if (node === null) {
       return null;
     } else if (target < node.data) {
       return this.search(node.left, target);
@@ -48,6 +48,10 @@ class BinaryTree {
     } else {
       return node;
     }
+  }
+
+  delete(node, target) {
+
   }
 }
 
@@ -62,10 +66,8 @@ BST.paste(8);
 BST.paste(-5);
 BST.paste(-4);
 console.log(BST.search(BST.root, 6))
+console.log(BST.search(BST.root, 10))
 console.log(BST)
-
-
-
 
 // 2
 function sortIncrease(array) {
@@ -85,7 +87,7 @@ function sortIncrease(array) {
   return array;
 }
 
-function bubbleSort (array) {
+function bubbleSort(array) {
   if(Array.isArray(array) === false) {
     throw new Error("Data type array is not a array");
   }
@@ -102,7 +104,8 @@ function bubbleSort (array) {
   return array;
 }
 
-function binarySearch(array, target) {
+//Не по заданию, просто реализация поиска для отсортированного массива по типу бинарного дерева
+function binarySearchFromSortedArray(array, target) {
   let left = 0;
   let right = array.length - 1;
   let mid;
@@ -120,4 +123,3 @@ function binarySearch(array, target) {
   }
   return -1;
 }
-

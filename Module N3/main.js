@@ -1,3 +1,4 @@
+"use strict";
 // 1
 class Node {
   constructor(data) {
@@ -38,7 +39,7 @@ class BinaryTree {
     }
   }
 
-  search(node, target) {
+  searchTarget(node, target) {
     if (node === null) {
       return null;
     } else if (target < node.data) {
@@ -70,36 +71,37 @@ class BinaryTree {
   }
 }
 
-let BST = new BinaryTree();
-BST.paste(5);
-BST.paste(3);
-BST.paste(6);
-BST.paste(7);
-BST.paste(2);
-BST.paste(4);
-BST.paste(8);
-BST.paste(-5);
-BST.paste(-4);
-// console.log(BST.search(BST.root, 6))
-// console.log(BST.search(BST.root, 10))
-console.log(BST.deleteTarget(BST.root, 7))
-console.log(BST.deleteTarget(BST.root, 10))
-console.log(BST.deleteTarget(BST.root, -10))
-console.log(BST)
+let bst = new BinaryTree();
+bst.paste(4);
+bst.paste(2);
+bst.paste(6);
+bst.paste(8);
+bst.paste(5);
+bst.paste(0);
+bst.paste(10);
+bst.paste(7);
+bst.paste(3);
+bst.paste(-1);
+
+console.log(bst)
 
 // 2
-function sortIncrease(array) {
+function selectionSort(array) {
   if(Array.isArray(array) === false) {
     throw new Error("Data type array is not a array");
   }
 
-  for (let j = 0; j < array.length - 1; j++) {
-    for (let i = 0; i < array.length - 1 - j; i++) {
-      if (array[i] < array[i + 1]) {
-        let result = array[i + 1];
-        array[i + 1] = array[i];
-        array[i] = result;
+  for(let i = 0; i < array.length; i++) {
+    let min = i;
+    for(let j = i; j < array.length; j++) {
+      if(array[j] < array[min]) {
+        min=j;
       }
+    }
+    if (min !== i) {
+      let temp = array[i];
+      array[i] = array[min];
+      array[min] = temp;
     }
   }
   return array;

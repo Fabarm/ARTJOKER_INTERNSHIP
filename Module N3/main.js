@@ -21,6 +21,7 @@ class BinaryTree {
     } else {
       this.pasteNode(this.root, newNode);
     }
+    return "Data added";
   }
 
   pasteNode(node, newNode) {
@@ -43,9 +44,9 @@ class BinaryTree {
     if (node === null) {
       return null;
     } else if (target < node.data) {
-      return this.search(node.left, target);
+      return this.searchTarget(node.left, target);
     } else if (target > node.data) {
-      return this.search(node.right, target);
+      return this.searchTarget(node.right, target);
     } else {
       return node;
     }
@@ -57,17 +58,17 @@ class BinaryTree {
        node.left = null;
        node.right = null;
     } else if (target < node.data) {
-      if(node.left === null) {
+      if (node.left === null) {
         return null;
       }
       return this.deleteTarget(node.left, target);
     } else if (target > node.data) {
-      if(node.right === null) {
+      if (node.right === null) {
         return null;
       }
       return this.deleteTarget(node.right, target);
     }
-    return "Delete complete";
+    return "Delete completed";
   }
 }
 
@@ -87,15 +88,15 @@ console.log(bst)
 
 // 2
 function selectionSort(array) {
-  if(Array.isArray(array) === false) {
+  if (Array.isArray(array) === false) {
     throw new Error("Data type array is not a array");
   }
 
-  for(let i = 0; i < array.length; i++) {
+  for (let i = 0; i < array.length; i++) {
     let min = i;
-    for(let j = i; j < array.length; j++) {
-      if(array[j] < array[min]) {
-        min=j;
+    for (let j = i; j < array.length; j++) {
+      if (array[j] < array[min]) {
+        min = j;
       }
     }
     if (min !== i) {
@@ -108,7 +109,7 @@ function selectionSort(array) {
 }
 
 function bubbleSort(array) {
-  if(Array.isArray(array) === false) {
+  if (Array.isArray(array) === false) {
     throw new Error("Data type array is not a array");
   }
 

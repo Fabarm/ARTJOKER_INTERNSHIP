@@ -7,7 +7,7 @@ class Node {
   }
 }
 
-class BinarySearchTree {
+class BinaryTree {
   constructor() {
     this.root = null;
   }
@@ -18,7 +18,7 @@ class BinarySearchTree {
     if (this.root === null) {
       this.root = newNode;
     } else {
-      this.pasteNode(this.root, newNode)
+      this.pasteNode(this.root, newNode);
     }
   }
 
@@ -27,19 +27,31 @@ class BinarySearchTree {
       if (node.left === null) {
         node.left = newNode;
       } else {
-        this.pasteNode(node.left, newNode)
+        this.pasteNode(node.left, newNode);
       }
     } else {
       if (node.right === null) {
-        node.right = newNode
+        node.right = newNode;
       } else {
-        this.pasteNode(node.right, newNode)
+        this.pasteNode(node.right, newNode);
       }
+    }
+  }
+
+  search(node, target) {
+    if(node === null) {
+      return null;
+    } else if (target < node.data) {
+      return this.search(node.left, target);
+    } else if (target > node.data) {
+      return this.search(node.right, target);
+    } else {
+      return node;
     }
   }
 }
 
-let BST = new BinarySearchTree();
+let BST = new BinaryTree();
 BST.paste(5);
 BST.paste(3);
 BST.paste(6);
@@ -47,6 +59,9 @@ BST.paste(7);
 BST.paste(2);
 BST.paste(4);
 BST.paste(8);
+BST.paste(-5);
+BST.paste(-4);
+console.log(BST.search(BST.root, 6))
 console.log(BST)
 
 

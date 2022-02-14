@@ -50,8 +50,23 @@ class BinaryTree {
     }
   }
 
-  delete(node, target) {
-
+  deleteTarget(node, target) {
+    if (node.data === target) {
+       node.data = null;
+       node.left = null;
+       node.right = null;
+    } else if (target < node.data) {
+      if(node.left === null) {
+        return null;
+      }
+      return this.deleteTarget(node.left, target);
+    } else if (target > node.data) {
+      if(node.right === null) {
+        return null;
+      }
+      return this.deleteTarget(node.right, target);
+    }
+    return "Delete complete";
   }
 }
 
@@ -65,8 +80,11 @@ BST.paste(4);
 BST.paste(8);
 BST.paste(-5);
 BST.paste(-4);
-console.log(BST.search(BST.root, 6))
-console.log(BST.search(BST.root, 10))
+// console.log(BST.search(BST.root, 6))
+// console.log(BST.search(BST.root, 10))
+console.log(BST.deleteTarget(BST.root, 7))
+console.log(BST.deleteTarget(BST.root, 10))
+console.log(BST.deleteTarget(BST.root, -10))
 console.log(BST)
 
 // 2

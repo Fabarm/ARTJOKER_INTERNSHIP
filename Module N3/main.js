@@ -3,6 +3,10 @@ let arr = [-5,-4,-3,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 
 // 2
 function sortIncrease(array) {
+  if(Array.isArray(array) === false) {
+    throw new Error("Data type array is not a array");
+  }
+
   for (let j = 0; j < array.length - 1; j++) {
     for (let i = 0; i < array.length - 1 - j; i++) {
       if (array[i] < array[i + 1]) {
@@ -16,6 +20,10 @@ function sortIncrease(array) {
 }
 
 function bubbleSort (array) {
+  if(Array.isArray(array) === false) {
+    throw new Error("Data type array is not a array");
+  }
+
   for (let i = 0; i < array.length; i++) {
     for (let j = 0; j < array.length - 1 - i; j++) {
       if (array[j] > array[j + 1]) {

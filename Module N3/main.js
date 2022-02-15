@@ -93,9 +93,9 @@ class BinaryTree {
         node = node.left;
         return node;
       }
-      let newNode = this.minNode(node.left);
+      let newNode = this.minNode(node.right);
       node.data = newNode.data;
-      node.left = this.deleteNode(node.left, newNode.data);
+      node.right = this.deleteNode(node.right, newNode.data);
       return node;
     }
   }

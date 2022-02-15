@@ -52,39 +52,45 @@ class BinaryTree {
     }
   }
 
-  deleteTarget(node, target) {
-    if (node.data === target) {
-       node.data = null;
-       node.left = null;
-       node.right = null;
+  minNode(node) {
+    if (node.left === null)
+      return node;
+    else
+      return this.minNode(node.left);
+  }
+
+  deleteTarget(target) {
+    this.root = this.deleteNode(this.root, target);
+  }
+
+  deleteNode(node, target) {
+    if (node === null) {
+      return null;
     } else if (target < node.data) {
-      if (node.left === null) {
-        return null;
-      }
-      return this.deleteTarget(node.left, target);
+      node.left = this.deleteNode(node.left, target);
+      return node;
     } else if (target > node.data) {
-      if (node.right === null) {
-        return null;
+      node.right = this.deleteNode(node.right, target);
+      return node;
+    } else {
+      if (node.left === null && node.right === null) {
+        node = null;
+        return node;
       }
-      return this.deleteTarget(node.right, target);
+      if (node.left === null) {
+        node = node.right;
+        return node;
+      } else if (node.right === null) {
+        node = node.left;
+        return node;
+      }
+      let newNode = this.minNode(node.left);
+      node.data = newNode.data;
+      node.left = this.deleteNode(node.left, newNode.data);
+      return node;
     }
-    return "Delete completed";
   }
 }
-
-let bst = new BinaryTree();
-bst.paste(4);
-bst.paste(2);
-bst.paste(6);
-bst.paste(8);
-bst.paste(5);
-bst.paste(0);
-bst.paste(10);
-bst.paste(7);
-bst.paste(3);
-bst.paste(-1);
-
-console.log(bst)
 
 // 2
 function selectionSort(array) {
@@ -100,9 +106,7 @@ function selectionSort(array) {
       }
     }
     if (min !== i) {
-      let temp = array[i];
-      array[i] = array[min];
-      array[min] = temp;
+      [array[i], array[min]] = [array[min], array[i]];
     }
   }
   return array;
@@ -116,9 +120,7 @@ function bubbleSort(array) {
   for (let i = 0; i < array.length; i++) {
     for (let j = 0; j < array.length - 1 - i; j++) {
       if (array[j] > array[j + 1]) {
-        const temp = array[j];
-        array[j] = array[j + 1];
-        array[j + 1] = temp;
+        [array[j], array[j + 1]] = [array[j + 1], array[j]]
       }
     }
   }

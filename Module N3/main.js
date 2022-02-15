@@ -2,6 +2,9 @@
 // 1
 class Node {
   constructor(data) {
+    if(typeof data !== "number") {
+      throw new Error("Data type is not a number");
+    }
     this.data = data;
     this.left = null;
     this.right = null;
@@ -14,6 +17,10 @@ class BinaryTree {
   }
 
   paste(data) {
+    if(typeof data !== "number") {
+      throw new Error("Data type is not a number");
+    }
+
     let newNode = new Node(data);
 
     if (this.root === null) {
@@ -21,7 +28,6 @@ class BinaryTree {
     } else {
       this.pasteNode(this.root, newNode);
     }
-    return "Data added";
   }
 
   pasteNode(node, newNode) {
@@ -60,6 +66,9 @@ class BinaryTree {
   }
 
   deleteTarget(target) {
+    if(typeof target !== "number") {
+      throw new Error("Data type of target is not a number");
+    }
     this.root = this.deleteNode(this.root, target);
   }
 

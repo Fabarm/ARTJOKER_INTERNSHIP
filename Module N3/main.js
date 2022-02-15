@@ -1,16 +1,5 @@
 "use strict";
 // 1
-class Node {
-  constructor(data) {
-    if(typeof data !== "number") {
-      throw new Error("Data type is not a number");
-    }
-    this.data = data;
-    this.left = null;
-    this.right = null;
-  }
-}
-
 class BinaryTree {
   constructor() {
     this.root = null;
@@ -21,7 +10,11 @@ class BinaryTree {
       throw new Error("Data type is not a number");
     }
 
-    let newNode = new Node(data);
+    let newNode = {
+      data : data,
+      left : null,
+      right : null,
+    };
 
     if (this.root === null) {
       this.root = newNode;

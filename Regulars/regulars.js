@@ -2,7 +2,7 @@ let regPhone = /^\+\d{2}\(\d{3}\)\d{3}-\d{2}-\d{2}$/;
 
 let regEmail = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
 
-let regSite = /^http\:\/\/test\.dev$/;
+let regSite = /^(https?\:\/\/)[a-z0-9-]+(\.([a-z]{2,4}))*(\/?)$/i;
 
 let regPassword = /^[a-z0-9_]{6,25}$/;
 

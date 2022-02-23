@@ -46,16 +46,15 @@ class BinaryTree {
       return this.searchTarget(node.left, target);
     } else if (target > node.data) {
       return this.searchTarget(node.right, target);
-    } else {
-      return node;
     }
+    return node;
   }
 
   minNode(node) {
-    if (node.left === null)
+    if (node.left === null) {
       return node;
-    else
-      return this.minNode(node.left);
+    }
+    return this.minNode(node.left);
   }
 
   deleteTarget(target) {
@@ -95,56 +94,28 @@ class BinaryTree {
 }
 
 // 2
-function selectionSort(array) {
-  if (Array.isArray(array) === false) {
-    throw new Error("Data type array is not a array");
-  }
-
-  for (let i = 0; i < array.length; i++) {
+Array.prototype.selectionSort = function () {
+  for (let i = 0; i < this.length; i++) {
     let min = i;
-    for (let j = i; j < array.length; j++) {
-      if (array[j] < array[min]) {
+    for (let j = i; j < this.length; j++) {
+      if (this[j] < this[min]) {
         min = j;
       }
     }
     if (min !== i) {
-      [array[i], array[min]] = [array[min], array[i]];
+      [this[i], this[min]] = [this[min], this[i]];
     }
   }
-  return array;
+  return this;
 }
 
-function bubbleSort(array) {
-  if (Array.isArray(array) === false) {
-    throw new Error("Data type array is not a array");
-  }
-
-  for (let i = 0; i < array.length; i++) {
-    for (let j = 0; j < array.length - 1 - i; j++) {
-      if (array[j] > array[j + 1]) {
-        [array[j], array[j + 1]] = [array[j + 1], array[j]]
+Array.prototype.bubbleSort = function () {
+  for (let i = 0; i < this.length; i++) {
+    for (let j = 0; j < this.length - 1 - i; j++) {
+      if (this[j] > this[j + 1]) {
+        [this[j], this[j + 1]] = [this[j + 1], this[j]]
       }
     }
   }
-  return array;
-}
-
-//Не по заданию, просто реализация поиска для отсортированного массива по типу бинарного дерева
-function binarySearchFromSortedArray(array, target) {
-  let left = 0;
-  let right = array.length - 1;
-  let mid;
-
-  while (left <= right) {
-    mid = Math.round((right - left)/2) + left;
-
-    if (target === array[mid]) {
-      return mid;
-    } else if (target < array[mid]) {
-      right = mid -1;
-    } else {
-      left = mid + 1;
-    }
-  }
-  return -1;
+  return this;
 }

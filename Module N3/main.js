@@ -5,7 +5,7 @@ class BinaryTree {
     this.root = null;
   }
 
-  paste(data) {
+  pasteTarget(data) {
     if(typeof data !== "number") {
       throw new Error("Data type is not a number");
     }
@@ -19,22 +19,22 @@ class BinaryTree {
     if (this.root === null) {
       this.root = newNode;
     } else {
-      this.pasteNode(this.root, newNode);
+      pasteNode(this.root, newNode);
     }
-  }
 
-  pasteNode(node, newNode) {
-    if (newNode.data < node.data) {
-      if (node.left === null) {
-        node.left = newNode;
+    function pasteNode(node, newNode) {
+      if (newNode.data < node.data) {
+        if (node.left === null) {
+          node.left = newNode;
+        } else {
+          pasteNode(node.left, newNode);
+        }
       } else {
-        this.pasteNode(node.left, newNode);
-      }
-    } else {
-      if (node.right === null) {
-        node.right = newNode;
-      } else {
-        this.pasteNode(node.right, newNode);
+        if (node.right === null) {
+          node.right = newNode;
+        } else {
+          pasteNode(node.right, newNode);
+        }
       }
     }
   }
@@ -50,45 +50,45 @@ class BinaryTree {
     return node;
   }
 
-  minNode(node) {
-    if (node.left === null) {
-      return node;
-    }
-    return this.minNode(node.left);
-  }
-
   deleteTarget(target) {
     if(typeof target !== "number") {
       throw new Error("Data type of target is not a number");
     }
-    this.root = this.deleteNode(this.root, target);
-  }
+    this.root = deleteNode(this.root, target);
 
-  deleteNode(node, target) {
-    if (node === null) {
-      return null;
-    } else if (target < node.data) {
-      node.left = this.deleteNode(node.left, target);
-      return node;
-    } else if (target > node.data) {
-      node.right = this.deleteNode(node.right, target);
-      return node;
-    } else {
-      if (node.left === null && node.right === null) {
-        node = null;
+    function deleteNode(node, target) {
+      if (node === null) {
+        return null;
+      } else if (target < node.data) {
+        node.left = deleteNode(node.left, target);
+        return node;
+      } else if (target > node.data) {
+        node.right = deleteNode(node.right, target);
+        return node;
+      } else {
+        if (node.left === null && node.right === null) {
+          node = null;
+          return node;
+        }
+        if (node.left === null) {
+          node = node.right;
+          return node;
+        } else if (node.right === null) {
+          node = node.left;
+          return node;
+        }
+        let newNode = minNode(node.right);
+        node.data = newNode.data;
+        node.right = deleteNode(node.right, newNode.data);
         return node;
       }
+    }
+
+    function minNode(node) {
       if (node.left === null) {
-        node = node.right;
-        return node;
-      } else if (node.right === null) {
-        node = node.left;
         return node;
       }
-      let newNode = this.minNode(node.right);
-      node.data = newNode.data;
-      node.right = this.deleteNode(node.right, newNode.data);
-      return node;
+      return minNode(node.left);
     }
   }
 }
@@ -96,7 +96,7 @@ class BinaryTree {
 // 2
 Array.prototype.selectionSort = function (callback) {
   if(typeof callback !== "function") {
-    throw new Error("Parameter should be a callback function");
+    throw new Error("Data type callback is not a function");
   }
   for (let i = 0; i < this.length; i++) {
     let min = i;
@@ -112,7 +112,7 @@ Array.prototype.selectionSort = function (callback) {
 
 Array.prototype.bubbleSort = function (callback) {
   if(typeof callback !== "function") {
-    throw new Error("Parameter should be a callback function");
+    throw new Error("Data type callback is not a function");
   }
   for (let i = 0; i < this.length; i++) {
     for (let j = 0; j < this.length - 1 - i; j++) {

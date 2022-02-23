@@ -94,25 +94,29 @@ class BinaryTree {
 }
 
 // 2
-Array.prototype.selectionSort = function () {
+Array.prototype.selectionSort = function (callback) {
+  if(typeof callback !== "function") {
+    throw new Error("Parameter should be a callback function");
+  }
   for (let i = 0; i < this.length; i++) {
     let min = i;
     for (let j = i; j < this.length; j++) {
-      if (this[j] < this[min]) {
+      if (callback(this[min], this[j])) {
         min = j;
       }
     }
-    if (min !== i) {
-      [this[i], this[min]] = [this[min], this[i]];
-    }
+    [this[i], this[min]] = [this[min], this[i]];
   }
   return this;
 }
 
-Array.prototype.bubbleSort = function () {
+Array.prototype.bubbleSort = function (callback) {
+  if(typeof callback !== "function") {
+    throw new Error("Parameter should be a callback function");
+  }
   for (let i = 0; i < this.length; i++) {
     for (let j = 0; j < this.length - 1 - i; j++) {
-      if (this[j] > this[j + 1]) {
+      if (callback(this[j], this[j + 1])) {
         [this[j], this[j + 1]] = [this[j + 1], this[j]]
       }
     }

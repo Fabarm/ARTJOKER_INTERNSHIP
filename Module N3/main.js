@@ -34,19 +34,16 @@ class BinaryTree {
       throw new Error("Data type of target is not a number");
     }
     node = node || this;
-    if (data < node.data) {
-      if (node.left === null) {
-        return false;
-      }
-      return this.search(data, node.left);
-    } else if (data > node.data) {
-      if (node.right === null) {
-        return false;
-      }
-      return this.search(data, node.right);
-    } else {
+    if (node.data === data) {
       return true;
-    } 
+    }
+    if (data < node.data && node.left !== null) {
+      return this.search(data, node.left);
+    }
+    if (data > node.data && node.right !== null) {
+      return this.search(data, node.right);
+    }
+    return false; 
   }
 
   delete(data, node) {
@@ -92,6 +89,20 @@ class BinaryTree {
     return this.minNode(node.left);
   }  
 };
+
+let a = new BinaryTree();
+a.add(5);
+a.add(7);
+a.add(6);
+a.add(10);
+a.add(9);
+a.add(3);
+a.add(4);
+a.add(2);
+a.add(11);
+console.log(a.search(10));
+
+console.log(a);
 
 // 2
 Array.prototype.selectionSort = function (callback) {

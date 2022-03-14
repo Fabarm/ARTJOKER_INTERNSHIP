@@ -21,12 +21,11 @@ class BinaryTree {
         node.left = new BinaryTree();
       }
       return this.add(data, node.left);
-    } else {    
-      if (node.right === null) {
-        node.right = new BinaryTree();      
-      }
-      return this.add(data, node.right);
+    }     
+    if (node.right === null) {
+      node.right = new BinaryTree();      
     }
+    return this.add(data, node.right);    
   }
 
   search(data, node) {
@@ -57,29 +56,30 @@ class BinaryTree {
       }
       node.left = this.delete(data, node.left);
       return node;
-    } else if (data > node.data) {
+    }
+    if (data > node.data) {
       if (node.right === null) {
         return false;
       }
       node.right = this.delete(data, node.right);
       return node;
-    } else {
-      if (node.left === null && node.right === null) {
-        node = null;
-        return node;
-      } else if (node.left === null) {
-        node = node.right;
-        return node;
-      } else if (node.right === null) {
-        node = node.left;
-        return node;
-      } else {
-        let newNode = this.minNode(node.right);
-        node.data = newNode.data;
-        node.right = this.delete(newNode.data, node.right);
-        return node;
-      }
+    } 
+    if (node.left === null && node.right === null) {
+      node = null;
+      return node;
     }
+    if (node.left === null) {
+      node = node.right;
+      return node;
+    }
+    if (node.right === null) {
+      node = node.left;
+      return node;
+    }
+    let newNode = this.minNode(node.right);
+    node.data = newNode.data;
+    node.right = this.delete(newNode.data, node.right);
+    return node;    
   }
 
   minNode(node) {
@@ -89,20 +89,6 @@ class BinaryTree {
     return this.minNode(node.left);
   }  
 };
-
-let a = new BinaryTree();
-a.add(5);
-a.add(7);
-a.add(6);
-a.add(10);
-a.add(9);
-a.add(3);
-a.add(4);
-a.add(2);
-a.add(11);
-console.log(a.search(10));
-
-console.log(a);
 
 // 2
 Array.prototype.selectionSort = function (callback) {

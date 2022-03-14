@@ -8,7 +8,7 @@ class BinaryTree {
   }
 
   add(data, node) {
-    if(typeof data !== "number") {
+    if (typeof data !== "number") {
       throw new Error("Data type of target is not a number");
     }
     node = node || this;
@@ -30,7 +30,7 @@ class BinaryTree {
   }
 
   search(data, node) {
-    if(typeof data !== "number") {
+    if (typeof data !== "number") {
       throw new Error("Data type of target is not a number");
     }
     node = node || this;
@@ -50,7 +50,7 @@ class BinaryTree {
   }
 
   delete(data, node) {
-    if(typeof data !== "number") {
+    if (typeof data !== "number") {
       throw new Error("Data type of target is not a number");
     }
     node = node || this;
@@ -91,22 +91,7 @@ class BinaryTree {
     }
     return this.minNode(node.left);
   }  
-}
-
-let b = new BinaryTree();
-b.add(5);
-b.add(7);
-b.add(3);
-b.add(10);
-b.add(9);
-b.add(2);
-b.add(4);
-b.add(6);
-b.add(11);
-// console.log(b.search(6));
-b.delete(7)
-
-console.log(b);
+};
 
 // 2
 Array.prototype.selectionSort = function (callback) {

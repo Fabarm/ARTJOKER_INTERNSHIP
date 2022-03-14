@@ -1,97 +1,112 @@
 "use strict";
 // 1
 class BinaryTree {
-  constructor() {
-    this.root = null;
+  constructor() {    
+    this.data = null; 
+    this.left = null; 
+    this.right = null; 
   }
 
-  pasteTarget(data) {
+  add(data, node) {
     if(typeof data !== "number") {
-      throw new Error("Data type is not a number");
-    }
-
-    let newNode = {
-      data : data,
-      left : null,
-      right : null,
-    };
-
-    if (this.root === null) {
-      this.root = newNode;
-    } else {
-      pasteNode(this.root, newNode);
-    }
-
-    function pasteNode(node, newNode) {
-      if (newNode.data < node.data) {
-        if (node.left === null) {
-          node.left = newNode;
-        } else {
-          pasteNode(node.left, newNode);
-        }
-      } else {
-        if (node.right === null) {
-          node.right = newNode;
-        } else {
-          pasteNode(node.right, newNode);
-        }
-      }
-    }
-  }
-
-  searchTarget(node, target) {
-    if (node === null) {
-      return null;
-    } else if (target < node.data) {
-      return this.searchTarget(node.left, target);
-    } else if (target > node.data) {
-      return this.searchTarget(node.right, target);
-    }
-    return node;
-  }
-
-  deleteTarget(target) {
-    if(typeof target !== "number") {
       throw new Error("Data type of target is not a number");
     }
-    this.root = deleteNode(this.root, target);
-
-    function deleteNode(node, target) {
-      if (node === null) {
-        return null;
-      } else if (target < node.data) {
-        node.left = deleteNode(node.left, target);
-        return node;
-      } else if (target > node.data) {
-        node.right = deleteNode(node.right, target);
-        return node;
-      } else {
-        if (node.left === null && node.right === null) {
-          node = null;
-          return node;
-        }
-        if (node.left === null) {
-          node = node.right;
-          return node;
-        } else if (node.right === null) {
-          node = node.left;
-          return node;
-        }
-        let newNode = minNode(node.right);
-        node.data = newNode.data;
-        node.right = deleteNode(node.right, newNode.data);
-        return node;
-      }
-    }
-
-    function minNode(node) {
+    node = node || this;
+    if (node.data === null) { 
+      node.data = data; 
+      return data; 
+    }  
+    if (data < node.data) {
       if (node.left === null) {
-        return node;
+        node.left = new BinaryTree();
       }
-      return minNode(node.left);
+      return this.add(data, node.left);
+    } else {    
+      if (node.right === null) {
+        node.right = new BinaryTree();      
+      }
+      return this.add(data, node.right);
     }
   }
+
+  search(data, node) {
+    if(typeof data !== "number") {
+      throw new Error("Data type of target is not a number");
+    }
+    node = node || this;
+    if (data < node.data) {
+      if (node.left === null) {
+        return false;
+      }
+      return this.search(data, node.left);
+    } else if (data > node.data) {
+      if (node.right === null) {
+        return false;
+      }
+      return this.search(data, node.right);
+    } else {
+      return true;
+    } 
+  }
+
+  delete(data, node) {
+    if(typeof data !== "number") {
+      throw new Error("Data type of target is not a number");
+    }
+    node = node || this;
+    if (data < node.data) {
+      if (node.left === null) {
+        return false;
+      }
+      node.left = this.delete(data, node.left);
+      return node;
+    } else if (data > node.data) {
+      if (node.right === null) {
+        return false;
+      }
+      node.right = this.delete(data, node.right);
+      return node;
+    } else {
+      if (node.left === null && node.right === null) {
+        node = null;
+        return node;
+      } else if (node.left === null) {
+        node = node.right;
+        return node;
+      } else if (node.right === null) {
+        node = node.left;
+        return node;
+      } else {
+        let newNode = this.minNode(node.right);
+        node.data = newNode.data;
+        node.right = this.delete(newNode.data, node.right);
+        return node;
+      }
+    }
+  }
+
+  minNode(node) {
+    if (node.left === null) {
+      return node;
+    }
+    return this.minNode(node.left);
+  }  
 }
+
+let b = new BinaryTree();
+b.add(5);
+b.add(7);
+b.add(3);
+b.add(10);
+b.add(9);
+b.add(2);
+b.add(4);
+b.add(6);
+b.add(11);
+// console.log(b.search(6));
+b.delete(7)
+
+console.log(b);
 
 // 2
 Array.prototype.selectionSort = function (callback) {
